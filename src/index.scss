@@ -1,0 +1,14 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import './styles/Menu.scss';
+
+body {
+  user-select: none;
+
+  main {
+    height: 70vh;
+  
+    .error {
+      color: #942911;
+    }
+  }
+}

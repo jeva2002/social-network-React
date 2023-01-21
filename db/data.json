@@ -1,0 +1,127 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Juanito",
+      "cel": 123,
+      "password": "hashed",
+      "profileImg": "https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2020/08/cosplay-neferpitou-hunter-x-hunter-instagram-fotos-1.jpg?fit=1200%2C800&quality=80&ssl=1",
+      "isConnected": "false",
+      "description": "mentalidad de tiburón :p",
+      "lastTime": "27/02/2002"
+    },
+    {
+      "id": 2,
+      "name": "Majo",
+      "cel": 789,
+      "password": "hashed",
+      "profileImg": "https://i.pinimg.com/736x/99/9f/ab/999fabc5043811be1c25c0cf47ad59ef.jpg",
+      "isConnected": "false",
+      "description": "hippie",
+      "lastTime": "27/02/2003"
+    },
+    {
+      "id": 3,
+      "name": "Hombre de dudosa procedencia",
+      "cel": 897,
+      "password": "hashed",
+      "profileImg": "https://www.fayerwayer.com/resizer/wfZn0HoBCldxS5NgfUYjzBrysYI=/800x0/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/metroworldnews/MVLVB2GQ5NCYBMRO5TZIKT7QYM.jpg",
+      "isConnected": "false",
+      "description": "hippie",
+      "lastTime": "27/02/2003"
+    },
+    {
+      "id": 4,
+      "name": "desgraciado",
+      "cel": 1234,
+      "password": "hashed",
+      "profileImg": "https://www.siliconera.com/wp-content/uploads/2019/05/cnEnrna.jpg",
+      "isConnected": "false",
+      "description": "hippie",
+      "lastTime": "27/02/2003"
+    }
+  ],
+  "messages": [
+    {
+      "idUserOne": 1,
+      "idUserTwo": 2,
+      "chat": [
+        {
+          "sendBy": 1,
+          "date": "28/05/16",
+          "hour": "05:12:12",
+          "message": "Oe, bien o no?",
+          "viewed": "true"
+        },
+        {
+          "sendBy": 1,
+          "date": "28/05/16",
+          "hour": "05:12:30",
+          "message": "Quiere ir a cine?",
+          "viewed": "true"
+        },
+        {
+          "sendBy": 2,
+          "date": "28/05/16",
+          "hour": "05:15:12",
+          "message": "Lol, va",
+          "viewed": "true"
+        }
+      ]
+    },
+    {
+      "idUserOne": 1,
+      "idUserTwo": 3,
+      "chat": [
+        {
+          "sendBy": 1,
+          "date": "28/05/16",
+          "hour": "05:12:12",
+          "message": "Hola",
+          "viewed": "true"
+        },
+        {
+          "sendBy": 1,
+          "date": "28/05/16",
+          "hour": "05:12:30",
+          "message": "Buenas",
+          "viewed": "true"
+        },
+        {
+          "sendBy": 2,
+          "date": "28/05/16",
+          "hour": "05:15:12",
+          "message": "quién ere tu",
+          "viewed": "true"
+        }
+      ]
+    },
+    {
+      "idUserOne": 4,
+      "idUserTwo": 1,
+      "chat": [
+        {
+          "sendBy": 1,
+          "date": "28/05/16",
+          "hour": "05:12:12",
+          "message": "Buenas",
+          "viewed": "true"
+        },
+        {
+          "sendBy": 1,
+          "date": "28/05/16",
+          "hour": "05:12:30",
+          "message": "Buenas",
+          "viewed": "true"
+        },
+        {
+          "sendBy": 2,
+          "date": "28/05/16",
+          "hour": "05:15:12",
+          "message": "Soy el gerente general de Amazon",
+          "viewed": "true"
+        }
+      ]
+    }
+  ]
+}
