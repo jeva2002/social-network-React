@@ -47,21 +47,21 @@
       "idUserTwo": 2,
       "chat": [
         {
-          "sendBy": 1,
+          "sendBy": 2,
           "date": "28/05/16",
           "hour": "05:12:12",
           "message": "Oe, bien o no?",
           "viewed": "true"
         },
         {
-          "sendBy": 1,
+          "sendBy": 2,
           "date": "28/05/16",
           "hour": "05:12:30",
           "message": "Quiere ir a cine?",
           "viewed": "true"
         },
         {
-          "sendBy": 2,
+          "sendBy": 1,
           "date": "28/05/16",
           "hour": "05:15:12",
           "message": "Lol, va",
@@ -74,7 +74,7 @@
       "idUserTwo": 3,
       "chat": [
         {
-          "sendBy": 1,
+          "sendBy": 3,
           "date": "28/05/16",
           "hour": "05:12:12",
           "message": "Hola",
@@ -88,7 +88,7 @@
           "viewed": "true"
         },
         {
-          "sendBy": 2,
+          "sendBy": 3,
           "date": "28/05/16",
           "hour": "05:15:12",
           "message": "quién ere tu",
@@ -101,7 +101,7 @@
       "idUserTwo": 1,
       "chat": [
         {
-          "sendBy": 1,
+          "sendBy": 4,
           "date": "28/05/16",
           "hour": "05:12:12",
           "message": "Buenas",
@@ -115,7 +115,7 @@
           "viewed": "true"
         },
         {
-          "sendBy": 2,
+          "sendBy": 4,
           "date": "28/05/16",
           "hour": "05:15:12",
           "message": "Soy el gerente general de Amazon",

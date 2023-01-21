@@ -6,7 +6,7 @@ const App: React.FunctionComponent = (props) => {
   const [user, setUser] = useState<User>();
 
   return (
-    <main className='container-fluid'>
+    <main className='container-fluid p-0 m-0'>
       <Outlet context={{ setUser, user }} />
     </main>
   );

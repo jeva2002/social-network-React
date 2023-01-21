@@ -9,7 +9,9 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
   const { setUser } = useCurrentUser()
 
   return (
-    <div className='d-flex align-items-center justify-content-center'>
+    <div className='d-flex align-items-center justify-content-center' style={{
+      minHeight: '90vh'
+    }}>
       <LoginForm setUser={setUser}/>
     </div>
   );
