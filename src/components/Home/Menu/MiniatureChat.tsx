@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getUser } from '../../../functions/services';
+import { getUserById } from '../../../functions/services';
 import { Chat, User } from '../../../functions/services/types';
 
 interface IMiniatureChat {
@@ -20,7 +20,7 @@ const MiniatureChat: React.FunctionComponent<IMiniatureChat> = ({
   const [contact, setContact] = useState<User>();
 
   useEffect(() => {
-    getUser('id', userId === chat.idUserOne ? chat.idUserTwo : chat.idUserOne)
+    getUserById(userId === chat.idUserOne ? chat.idUserTwo : chat.idUserOne)
       .then((res) => {
         setContact(res);
         setContacts((contacts) => {

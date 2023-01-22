@@ -16,13 +16,14 @@ export interface User {
 
 export interface Message {
   sendBy: number;
-  date: Date;
-  hour: Date;
+  date: string;
+  hour: string;
   message: string;
   viewed: boolean;
 }
 
 export interface Chat {
+  id: number;
   idUserOne: number;
   idUserTwo: number;
   chat: Message[];

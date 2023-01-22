@@ -1,7 +1,7 @@
 import baseInstance from './config/axiosInstance';
 import routes from './config/routes';
 
-const getChats = async (id: number | undefined) => {
+export const getChats = async (id: number | undefined) => {
   if (id) {
     const startedByCurrentUser = await (
       await baseInstance.get(routes.messages.index + `?idUserOne=${id}`)
@@ -13,4 +13,9 @@ const getChats = async (id: number | undefined) => {
   }
 };
 
-export default getChats;
+export const getChatById = async (id: number | undefined) => {
+  if (id)
+    return await (
+      await baseInstance.get(routes.messages.index + id)
+    ).data;
+};

@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react';
-import { getUser } from '../../functions/services';
+import {
+  getUserById,
+  seeMessages,
+  sendMessage,
+} from '../../functions/services';
 import { Chat, User } from '../../functions/services/types';
 import MessageComponent from './CurrentChat/Message';
 import search from '../../assets/search.svg';
 import arrow from '../../assets/arrow-left.svg';
 import ChatOptions from './CurrentChat/ChatOptions';
+import { handleNewMessage } from '../../functions/controller';
 
 interface Props {
   contactId: number | undefined;
   chat: Chat | undefined;
   setChatActive: React.Dispatch<React.SetStateAction<boolean>>;
   chatActive: boolean;
+  setModify: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CurrentChat: React.FunctionComponent<Props> = ({
@@ -18,11 +24,21 @@ const CurrentChat: React.FunctionComponent<Props> = ({
   chat,
   setChatActive,
   chatActive,
+  setModify,
 }) => {
   const [user, setUser] = useState<User>();
 
+  const handleSubmit = (_text: string) => {
+    if (chat)
+      return handleNewMessage(
+        _text,
+        contactId === chat?.idUserOne ? chat?.idUserTwo : chat?.idUserOne,
+        chat
+      )?.then(() => setModify((value) => !value));
+  };
+
   useEffect(() => {
-    getUser('id', contactId ?? '')
+    getUserById(contactId)
       .then((res) => setUser(res))
       .catch((e) => console.log(e));
   }, [contactId]);
@@ -65,20 +81,21 @@ const CurrentChat: React.FunctionComponent<Props> = ({
         </div>
       </section>
       <section
-        className='d-flex flex-column'
-        style={{ backgroundColor: '#eee', minHeight: '75vh', overflow: 'auto' }}
+        style={{ backgroundColor: '#eee', height: '76vh', overflowY: 'scroll' }}
       >
-        {chat?.chat.map((message, index) => {
-          return (
-            <MessageComponent
-              key={index}
-              message={message}
-              contactId={contactId}
-            />
-          );
-        })}
+        <div className='d-flex flex-column'>
+          {chat?.chat.map((message, index) => {
+            return (
+              <MessageComponent
+                key={index}
+                message={message}
+                contactId={contactId}
+              />
+            );
+          })}
+        </div>
       </section>
-      <ChatOptions />
+      <ChatOptions handleSubmit={handleSubmit} />
     </div>
   );
 };

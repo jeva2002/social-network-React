@@ -1,9 +1,9 @@
 const routes = {
   users: {
-    index: '/users'
+    index: '/users/'
   },
   messages: {
-    index: '/messages'
+    index: '/messages/'
   }
 }
 

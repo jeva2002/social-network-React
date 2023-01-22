@@ -1,9 +1,11 @@
+import { disconnect } from '../../functions/services';
 import { useState, useEffect } from 'react';
-// import { CurrentUser } from '../../App';
-import getChats from '../../functions/services/getChats';
+import close from '../../assets/x.svg';
+import {getChats} from '../../functions/services/';
 import { Chat, User } from '../../functions/services/types';
 import ChatsHistory from './Menu/ChatsHistory';
 import Filter from './Menu/Filter';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   user: User | undefined;
@@ -24,6 +26,8 @@ const Menu: React.FunctionComponent<Props> = ({
   const [contacts, setContacts] = useState<User[]>([]);
   const [filter, setFilter] = useState('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getChats(user?.id)
       .then((res) => {
@@ -38,12 +42,9 @@ const Menu: React.FunctionComponent<Props> = ({
       className={`menu-home container-fluid col-md-4 col-12 p-0 m-0 ${
         chatActive ? 'hidden' : ''
       }`}
-      style={{
-        cursor: 'pointer'
-      }}
     >
       <section
-        className='ps-4 py-2 d-flex justify-content-start gap-1'
+        className='px-4 py-2 d-flex justify-content-between gap-1'
         style={{
           backgroundColor: '#f6f6f6',
         }}
@@ -53,6 +54,18 @@ const Menu: React.FunctionComponent<Props> = ({
           src={user?.profileImg}
           alt='Profile pic'
           onClick={() => setProfile(true)}
+          style={{
+            cursor: 'pointer',
+          }}
+        />
+        <img
+          src={close}
+          alt='Cerrar sesión'
+          style={{ width: 35, cursor: 'pointer' }}
+          onClick={() => {
+            disconnect(user?.id);
+            navigate('/');
+          }}
         />
       </section>
       <Filter setFilter={setFilter} />
