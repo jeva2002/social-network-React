@@ -59,14 +59,21 @@
           "date": "28/05/16",
           "hour": "05:12:30",
           "message": "Quiere ir a cine?",
-          "viewed": "true"
+          "viewed": true
         },
         {
           "sendBy": 1,
           "date": "28/05/16",
           "hour": "05:15:12",
           "message": "Lol, va",
-          "viewed": true
+          "viewed": false
+        },
+        {
+          "date": "1/22/2023",
+          "hour": "01:13",
+          "message": "oe",
+          "sendBy": 1,
+          "viewed": false
         }
       ]
     },

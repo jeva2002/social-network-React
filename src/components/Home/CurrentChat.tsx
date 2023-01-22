@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
-import {
-  getUserById,
-  seeMessages,
-  sendMessage,
-} from '../../functions/services';
+import { getUserById } from '../../functions/services';
 import { Chat, User } from '../../functions/services/types';
 import MessageComponent from './CurrentChat/Message';
 import search from '../../assets/search.svg';
 import arrow from '../../assets/arrow-left.svg';
 import ChatOptions from './CurrentChat/ChatOptions';
-import { handleNewMessage } from '../../functions/controller';
+import { handleNewMessage, handleOpenChat } from '../../functions/controller';
 
 interface Props {
   contactId: number | undefined;
@@ -42,6 +38,10 @@ const CurrentChat: React.FunctionComponent<Props> = ({
       .then((res) => setUser(res))
       .catch((e) => console.log(e));
   }, [contactId]);
+
+  useEffect(() => {
+    handleOpenChat(chat, user?.id);
+  }, [chat, user]);
 
   return (
     <div

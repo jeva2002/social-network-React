@@ -7,9 +7,9 @@ export const seeMessages = async (
 ) => {
   if (chat)
     return await(
-      await baseInstance.patch(
+      await baseInstance.put(
         routes.messages.index + chat.id,
-        {...chat}
+        chat
       )
     ).data;
 };
