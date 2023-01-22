@@ -25,7 +25,7 @@ const CurrentChat: React.FunctionComponent<Props> = ({
     getUser('id', contactId ?? '')
       .then((res) => setUser(res))
       .catch((e) => console.log(e));
-  },[contactId]);
+  }, [contactId]);
 
   return (
     <div

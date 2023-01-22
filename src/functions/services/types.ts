@@ -27,3 +27,8 @@ export interface Chat {
   idUserTwo: number;
   chat: Message[];
 }
+
+export interface UpdateUser {
+  name?: string;
+  profileImg?: string;
+}

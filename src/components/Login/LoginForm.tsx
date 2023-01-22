@@ -40,7 +40,7 @@ const LoginForm: React.FunctionComponent<{
         }}
       >
         <Form
-          className='col-sm-4 col-11 px-5 py-5 d-flex flex-column'
+          className='col-md-4 col-11 px-md-5 px-4 py-5 d-flex flex-column'
           style={{
             backgroundColor: '#efefef',
             borderRadius: 10,

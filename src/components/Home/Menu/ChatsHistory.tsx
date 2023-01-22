@@ -1,19 +1,26 @@
 import { useEffect } from 'react';
-import { Chat } from '../../../functions/services/types';
+import { Chat, User } from '../../../functions/services/types';
 import MiniatureChat from './MiniatureChat';
+import UseFilter from './UseFilter';
 
 interface Props {
   chatsList: Chat[] | undefined;
   userId: number | undefined;
   setCurrentChat: React.Dispatch<React.SetStateAction<Chat | undefined>>;
   setChatActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setContacts: React.Dispatch<React.SetStateAction<User[]>>;
+  contacts: User[];
+  filter: string;
 }
 
 const ChatsHistory: React.FunctionComponent<Props> = ({
   chatsList,
   userId,
   setCurrentChat,
-  setChatActive
+  setChatActive,
+  setContacts,
+  filter,
+  contacts,
 }) => {
   useEffect(() => {
     setCurrentChat(chatsList ? chatsList[0] : undefined);
@@ -27,17 +34,28 @@ const ChatsHistory: React.FunctionComponent<Props> = ({
         overflowX: 'hidden',
       }}
     >
-      {chatsList?.map((chat) => {
-        return (
-          <MiniatureChat
-            key={`${chat.idUserOne}-${chat.idUserTwo}`}
-            chat={chat}
-            userId={userId}
-            setCurrentChat={setCurrentChat}
-            setChatActive={setChatActive}
-          />
-        );
-      })}
+      {!filter
+        ? chatsList?.map((chat) => {
+            return (
+              <MiniatureChat
+                key={`${chat.idUserOne}-${chat.idUserTwo}`}
+                chat={chat}
+                userId={userId}
+                setCurrentChat={setCurrentChat}
+                setChatActive={setChatActive}
+                setContacts={setContacts}
+              />
+            );
+          })
+        : UseFilter(
+            filter,
+            contacts,
+            chatsList,
+            setCurrentChat,
+            setChatActive,
+            setContacts,
+            userId
+          )}
     </section>
   );
 };
