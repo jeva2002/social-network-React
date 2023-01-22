@@ -33,8 +33,10 @@ const ChatOptions: React.FunctionComponent<Props> = ({ handleSubmit }) => {
         className='col-9'
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit(newMessage);
-          setNewMessage('');
+          if(newMessage !== ''){
+            handleSubmit(newMessage);
+            setNewMessage('');
+          }
         }}
       >
         <FormControl

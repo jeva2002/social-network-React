@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { getUserById } from '../../functions/services';
-import { Chat, User } from '../../functions/services/types';
+import { Chat, Message, User } from '../../functions/services/types';
 import MessageComponent from './CurrentChat/Message';
 import search from '../../assets/search.svg';
 import arrow from '../../assets/arrow-left.svg';
 import ChatOptions from './CurrentChat/ChatOptions';
-import { handleNewMessage, handleOpenChat } from '../../functions/controller';
+import {
+  deleteChat,
+  handleNewMessage,
+  handleOpenChat,
+} from '../../functions/controller';
 
 interface Props {
   contactId: number | undefined;
@@ -31,6 +35,10 @@ const CurrentChat: React.FunctionComponent<Props> = ({
         contactId === chat?.idUserOne ? chat?.idUserTwo : chat?.idUserOne,
         chat
       )?.then(() => setModify((value) => !value));
+  };
+
+  const handleDeleteMessage = (message: Message) => {
+    deleteChat(message, chat).then(() => setModify((value) => !value));
   };
 
   useEffect(() => {
@@ -90,6 +98,7 @@ const CurrentChat: React.FunctionComponent<Props> = ({
                 key={index}
                 message={message}
                 contactId={contactId}
+                handleDeleteMessage={handleDeleteMessage}
               />
             );
           })}

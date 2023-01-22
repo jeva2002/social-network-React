@@ -16,9 +16,9 @@
       "cel": 789,
       "password": "hashed",
       "profileImg": "https://i.pinimg.com/736x/99/9f/ab/999fabc5043811be1c25c0cf47ad59ef.jpg",
-      "isConnected": true,
+      "isConnected": false,
       "description": "hippie",
-      "lastTime": "1/21/2023"
+      "lastTime": "1/22/2023"
     },
     {
       "id": 3,
@@ -67,13 +67,6 @@
           "hour": "05:15:12",
           "message": "Lol, va",
           "viewed": false
-        },
-        {
-          "date": "1/22/2023",
-          "hour": "01:13",
-          "message": "oe",
-          "sendBy": 1,
-          "viewed": false
         }
       ]
     },
@@ -102,6 +95,13 @@
           "hour": "05:15:12",
           "message": "quién ere tu",
           "viewed": true
+        },
+        {
+          "date": "1/22/2023",
+          "hour": "01:41",
+          "message": "Todo vientos",
+          "sendBy": 1,
+          "viewed": false
         }
       ]
     },

@@ -1,18 +1,20 @@
 import { useState } from 'react';
-import { Chat, Message } from '../../../functions/services/types';
+import { Message } from '../../../functions/services/types';
 import arrow from '../../../assets/arrow-down.svg';
 import check from '../../../assets/check.svg';
 
 interface Props {
   message: Message;
   contactId: number | undefined;
+  handleDeleteMessage: (message: Message) => void;
 }
 
 const MessageComponent: React.FunctionComponent<Props> = ({
   message,
   contactId,
+  handleDeleteMessage,
 }) => {
-  const [showEdit, setShowEdit] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
 
   return (
     <article
@@ -22,7 +24,7 @@ const MessageComponent: React.FunctionComponent<Props> = ({
           : 'align-self-end user-message'
       }`}
     >
-      <div className='d-flex justify-content-between'>
+      <div className='d-flex justify-content-between position-relative'>
         <p className='col-11' style={{ fontSize: 18 }}>
           {message.message}
         </p>
@@ -32,8 +34,35 @@ const MessageComponent: React.FunctionComponent<Props> = ({
           style={{
             cursor: 'pointer',
           }}
-          onClick={() => setShowEdit(true)}
+          onClick={() => setShowOptions(!showOptions)}
         />
+        {showOptions ? (
+          <menu
+            className='position-absolute d-flex flex-column gap-3 p-3'
+            style={{
+              backgroundColor: '#ccc',
+              left: 150,
+              top: 20,
+              listStyle: 'none',
+              zIndex: 10,
+              borderRadius: 10,
+            }}
+          >
+            <li className='menu-select m-0' style={{ cursor: 'pointer' }}>
+              Editar mensaje
+            </li>
+            <li
+              className='menu-select m-0'
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                handleDeleteMessage(message)
+                setShowOptions(false);
+              }}
+            >
+              Eliminar mensaje
+            </li>
+          </menu>
+        ) : null}
       </div>
       <div className='align-self-end d-flex align-items-center'>
         <small>{`${message.hour}`}</small>

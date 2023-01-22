@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { getChatById, sendMessage } from '../services';
+import { getChatById, modifyChat } from '../services';
 import { Chat, Message } from '../services/types';
 
 const formatMessage = (text: string, userId: number) => {
@@ -16,11 +16,11 @@ const formatMessage = (text: string, userId: number) => {
 export const handleNewMessage = (
   text: string,
   userId: number | undefined,
-  chat: Chat | undefined,
+  chat: Chat | undefined
 ) => {
   if (userId && chat) {
     const newMessage = formatMessage(text, userId);
     chat.chat.push(newMessage);
-    return sendMessage(chat.id, chat);
+    return modifyChat(chat.id, chat);
   }
 };

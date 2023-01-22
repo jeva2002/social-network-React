@@ -46,6 +46,10 @@ small {
   color: #666;
 }
 
+.menu-select:hover {
+  color: white;
+}
+
 @media screen and (max-width: 765px) {
   .hidden {
     display: none !important;
