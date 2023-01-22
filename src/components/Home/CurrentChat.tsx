@@ -6,7 +6,8 @@ import search from '../../assets/search.svg';
 import arrow from '../../assets/arrow-left.svg';
 import ChatOptions from './CurrentChat/ChatOptions';
 import {
-  deleteChat,
+  deleteMessage,
+  editMessage,
   handleNewMessage,
   handleOpenChat,
 } from '../../functions/controller';
@@ -38,7 +39,11 @@ const CurrentChat: React.FunctionComponent<Props> = ({
   };
 
   const handleDeleteMessage = (message: Message) => {
-    deleteChat(message, chat).then(() => setModify((value) => !value));
+    deleteMessage(message, chat).then(() => setModify((value) => !value));
+  };
+
+  const handleEditMessage = (text: string, message: Message) => {
+    editMessage(text, message, chat).then(() => setModify((value) => !value));
   };
 
   useEffect(() => {
@@ -99,6 +104,7 @@ const CurrentChat: React.FunctionComponent<Props> = ({
                 message={message}
                 contactId={contactId}
                 handleDeleteMessage={handleDeleteMessage}
+                handleEditMessage={handleEditMessage}
               />
             );
           })}

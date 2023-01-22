@@ -121,7 +121,7 @@
           "sendBy": 1,
           "date": "28/05/16",
           "hour": "05:12:30",
-          "message": "Buenas",
+          "message": "Buenas Tardes",
           "viewed": true
         },
         {
@@ -130,13 +130,6 @@
           "hour": "05:15:12",
           "message": "Soy el gerente general de Amazon",
           "viewed": true
-        },
-        {
-          "date": "1/22/2023",
-          "hour": "00:38",
-          "message": "sadadsasd",
-          "sendBy": 1,
-          "viewed": false
         }
       ]
     }

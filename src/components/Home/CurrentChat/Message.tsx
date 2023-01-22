@@ -2,19 +2,24 @@ import { useState } from 'react';
 import { Message } from '../../../functions/services/types';
 import arrow from '../../../assets/arrow-down.svg';
 import check from '../../../assets/check.svg';
+import FormControl from 'react-bootstrap/FormControl';
 
 interface Props {
   message: Message;
   contactId: number | undefined;
   handleDeleteMessage: (message: Message) => void;
+  handleEditMessage: (text: string, message: Message) => void;
 }
 
 const MessageComponent: React.FunctionComponent<Props> = ({
   message,
   contactId,
   handleDeleteMessage,
+  handleEditMessage,
 }) => {
   const [showOptions, setShowOptions] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [updatedMessage, setUpdatedMessage] = useState(message.message);
 
   return (
     <article
@@ -25,9 +30,25 @@ const MessageComponent: React.FunctionComponent<Props> = ({
       }`}
     >
       <div className='d-flex justify-content-between position-relative'>
-        <p className='col-11' style={{ fontSize: 18 }}>
-          {message.message}
-        </p>
+        {!edit ? (
+          <p className='col-11' style={{ fontSize: 18 }}>
+            {message.message}
+          </p>
+        ) : (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleEditMessage(updatedMessage, message);
+              setUpdatedMessage('');
+              setEdit(!edit);
+            }}
+          >
+            <FormControl
+              value={updatedMessage}
+              onChange={(e) => setUpdatedMessage(e.currentTarget.value)}
+            />
+          </form>
+        )}
         <img
           src={arrow}
           alt='Mostrar opciones'
@@ -48,14 +69,21 @@ const MessageComponent: React.FunctionComponent<Props> = ({
               borderRadius: 10,
             }}
           >
-            <li className='menu-select m-0' style={{ cursor: 'pointer' }}>
+            <li
+              className='menu-select m-0'
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                setEdit(!edit);
+                setShowOptions(false);
+              }}
+            >
               Editar mensaje
             </li>
             <li
               className='menu-select m-0'
               style={{ cursor: 'pointer' }}
               onClick={() => {
-                handleDeleteMessage(message)
+                handleDeleteMessage(message);
                 setShowOptions(false);
               }}
             >
