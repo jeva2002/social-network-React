@@ -13,3 +13,10 @@ export const seeMessages = async (
       )
     ).data;
 };
+
+export const putChat = async (id: number, newChat: Chat) => {
+  return await (
+    await baseInstance.put(routes.messages.index + newChat.id, newChat)
+  ).data;
+};
+

@@ -3,6 +3,14 @@ export interface Auth {
   password: string;
 }
 
+export interface IValues {
+  name: string;
+  cel: number | string;
+  password: string;
+  profileImg: string;
+  description: string;
+}
+
 export interface User {
   id: number;
   name: string;

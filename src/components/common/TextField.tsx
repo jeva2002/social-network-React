@@ -1,20 +1,37 @@
 import { useField } from 'formik';
 import Form from 'react-bootstrap/Form';
-import Swal from 'sweetalert2'
+
+interface TextArea {
+  as: string;
+  row?: number;
+}
 
 interface Props {
   label: string;
   name: string;
   type: string;
+  isTextArea?: TextArea;
 }
 
-const TextField: React.FunctionComponent<Props> = ({ label, name, type }) => {
+const TextField: React.FunctionComponent<Props> = ({
+  label,
+  name,
+  type,
+  isTextArea,
+}) => {
   const [field, meta] = useField(name);
+  
+  const textArea = isTextArea ?? {};
 
   return (
     <Form.Group className='mb-3'>
       <Form.Label>{label}</Form.Label>
-      <Form.Control {...field} type={type} placeholder={label} />
+      <Form.Control
+        {...field}
+        type={type}
+        placeholder={label}
+        {...textArea}
+      />
       {meta.touched && meta.error ? (
         <div className='error ms-3'>{meta.error}</div>
       ) : null}

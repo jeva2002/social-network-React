@@ -1,4 +1,4 @@
-import { modifyChat } from '../services';
+import { putChat } from '../services';
 import { Chat, Message } from '../services/types';
 
 export const deleteMessage = async (
@@ -8,7 +8,7 @@ export const deleteMessage = async (
   if (chat) {
     const newChat = chat;
     newChat.chat = chat?.chat.filter((e) => e !== message);
-    return await modifyChat(chat.id, newChat);
+    return await putChat(chat.id, newChat);
   }
 };
 
@@ -23,6 +23,6 @@ export const editMessage = async (
       if (e === message) e.message = text;
       return e;
     });
-    return await modifyChat(chat.id, newChat);
+    return await putChat(chat.id, newChat);
   }
 };

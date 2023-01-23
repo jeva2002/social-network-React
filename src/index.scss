@@ -6,6 +6,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   user-select: none;
+
   main {
     height: 70vh;
 
@@ -22,5 +23,11 @@ body {
 
   .click {
     cursor: pointer;
+  }
+
+  .btn-primary {
+    --bs-btn-bg: #7acb8b;
+    --bs-btn-border-color: #b1e4bc;
+    --bs-btn-hover-bg: #6aab78;
   }
 }
