@@ -36,6 +36,7 @@ const MiniatureChat: React.FunctionComponent<IMiniatureChat> = ({
   return (
     <article
       className='d-flex border-bottom py-3 px-2 gap-3'
+      style={{ maxHeight: 100, overflow: 'hidden' }}
       onClick={() => {
         setCurrentChat(chat);
         setChatActive(true);

@@ -70,7 +70,7 @@ const Options: React.FunctionComponent<Props> = ({ user, setUser }) => {
       </figure>
       {editImg ? (
         <div className='p-4'>
-          <h3 style={{ fontSize: 22 }}>Imágen</h3>
+          <h3 style={{ fontSize: 22 }}>Imagen</h3>
           <FormControl
             name='img'
             onChange={(e) => setImg(e.currentTarget.value)}
