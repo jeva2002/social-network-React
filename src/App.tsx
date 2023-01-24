@@ -1,6 +1,15 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { Outlet, useOutletContext } from 'react-router-dom';
 import { User } from './functions/services/types';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore'
+import { firebaseConfig } from './functions/services/db/config/firestoreConfig';
+import { getAuth } from 'firebase/auth';
+
+const app = initializeApp(firebaseConfig);
+export const database = getFirestore(app);
+export const auth = getAuth();
+
 
 const App: React.FunctionComponent = (props) => {
   const [user, setUser] = useState<User>();
