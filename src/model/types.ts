@@ -1,3 +1,5 @@
+import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+
 export interface Auth {
   email: string;
   password: string;
@@ -11,6 +13,10 @@ export interface IValues {
   description: string;
 }
 
+export interface ICurrentUser {
+  currentUser: { id: string } | null;
+}
+
 export interface User {
   firstname: string;
   lastname: string;
@@ -21,6 +27,7 @@ export interface User {
   description?: string;
   isConnected?: string;
   lastTime?: string;
+  chats?: [];
 }
 
 export interface Message {
@@ -32,9 +39,8 @@ export interface Message {
 }
 
 export interface Chat {
-  id: number;
-  idUserOne: number;
-  idUserTwo: number;
+  idUserOne: string;
+  idUserTwo: string;
   chat: Message[];
 }
 

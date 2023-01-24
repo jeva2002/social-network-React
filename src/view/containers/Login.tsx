@@ -1,9 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginForm from '../components/Login/LoginForm';
 import { Formik } from 'formik';
-import { VALIDATE_LOGIN } from '../functions/controller/domain';
-import { Auth } from '../functions/controller/domain/types';
-import { handleLogin } from '../functions/controller';
+import { VALIDATE_LOGIN } from '../../model/validations';
+import { Auth } from '../../model/types';
+import { handleLogin } from '../../controller';
+import { useDispatch } from 'react-redux';
+import { setCurrentUser } from '../../controller/slices';
+import Swal from 'sweetalert2';
 
 interface ILoginProps {}
 
@@ -13,6 +16,9 @@ const INITIAL_VALUES: Auth = {
 };
 
 const Login: React.FunctionComponent<ILoginProps> = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <div
       className='d-flex flex-column gap-4 align-items-center justify-content-center'
@@ -25,7 +31,13 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
       <Formik
         initialValues={INITIAL_VALUES}
         validationSchema={VALIDATE_LOGIN}
-        onSubmit={(values) => handleLogin(values)}
+        onSubmit={async (values) => {
+          const currentUser = await handleLogin(values);
+          if (currentUser[0]) {
+            dispatch(setCurrentUser(currentUser[0]));
+            navigate('/home');
+          }
+        }}
       >
         <LoginForm />
       </Formik>
