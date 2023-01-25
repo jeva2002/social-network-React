@@ -2,8 +2,9 @@ import close from '../../../../assets/x.svg';
 import addContact from '../../../../assets/user-plus.svg';
 import noPhoto from '../../../../assets/no-photo.svg';
 import contactsList from '../../../../assets/contacts-list.svg';
+import chats from '../../../../assets/chats.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCurrentUser } from '../../../../controller/slices';
+import { clearCurrentUser, setMenuView } from '../../../../controller/slices';
 import { useState } from 'react';
 
 interface Props {}
@@ -18,7 +19,7 @@ const CurrentUserProfile: React.FunctionComponent<Props> = (props) => {
 
   return (
     <section
-      className='px-5 py-2 d-flex justify-content-between gap-1'
+      className='px-3 py-2 d-flex justify-content-between gap-1'
       style={{
         backgroundColor: '#f6f6f6',
       }}
@@ -28,20 +29,27 @@ const CurrentUserProfile: React.FunctionComponent<Props> = (props) => {
         src={profilePic}
         alt='Profile pic'
         onError={() => setProfilePic(noPhoto)}
-        onClick={() => {}}
         style={{
           cursor: 'pointer',
         }}
       />
       <img
-        src={contactsList}
-        alt='Lista'
+        src={chats}
+        alt='Chats'
         style={{ width: 35, cursor: 'pointer' }}
+        onClick={() => dispatch(setMenuView('chatHistory'))}
+      />
+      <img
+        src={contactsList}
+        alt='Lista de contactos'
+        style={{ width: 35, cursor: 'pointer' }}
+        onClick={() => dispatch(setMenuView('contactsList'))}
       />
       <img
         src={addContact}
         alt='Agregar contacto'
         style={{ width: 35, cursor: 'pointer' }}
+        onClick={() => dispatch(setMenuView('addContact'))}
       />
       <img
         src={close}

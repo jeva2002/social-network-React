@@ -50,4 +50,5 @@ export interface ContactData {
   description: string;
   id: string;
   profileImg: string;
+  chat: [];
 }

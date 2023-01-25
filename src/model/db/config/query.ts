@@ -12,6 +12,7 @@ export enum queryOperators {
   lessOrEqual = '<=',
   greaterThan = '>',
   greaterOrEqual = '>=',
+  arrayContains = 'array-contains',
 }
 
 export const createQuery = (

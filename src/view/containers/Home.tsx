@@ -1,12 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useCurrentUser } from '../../App';
-import Swal from 'sweetalert2';
-import { Chat } from '../../functions/services/types';
-import CurrentChat from '../../components/Home/CurrentChat';
-import Profile from '../../components/Home/Profile';
-import { connect } from '../../functions/services';
 import { useSelector } from 'react-redux';
-import { Navigate, redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import Menu from '../components/Home/Menu';
 
 const Home: React.FunctionComponent = (props) => {
@@ -25,7 +18,7 @@ const Home: React.FunctionComponent = (props) => {
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
   );
-  console.log(currentUser);
+
   if (!currentUser) {
     return <Navigate to='/' />;
   }

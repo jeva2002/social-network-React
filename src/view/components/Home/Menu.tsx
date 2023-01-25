@@ -5,10 +5,10 @@
 // import { Chat, User } from '../../functions/services/types';
 // import ChatsHistory from './Menu/ChatsHistory';
 // import Filter from './Menu/Filter';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import AddContacts from './Menu/AddContacts';
 import ChatsHistory from './Menu/ChatsHistory';
+import ContactsList from './Menu/ContactsList';
 import CurrentUserProfile from './Menu/CurrentUserProfile';
 
 interface Props {
@@ -21,19 +21,18 @@ interface Props {
 
 const selectView = (view: string) => {
   switch (view) {
-    case 'chatHistory':
-      
-      break;
     case 'addContact':
       return <AddContacts />;
+    case 'contactsList':
+      return <ContactsList />;
     default:
-      break;
+      return <ChatsHistory />;
   }
-}
+};
 
 const Menu: React.FunctionComponent<Props> = () => {
-  const view = useSelector((state: any) => state.menuView.currentView)
-  const dispatch = useDispatch();
+  const view = useSelector((state: any) => state.menuView.currentView);
+
   // const [chatsList, setChatsList] = useState<Chat[]>();
   // const [contacts, setContacts] = useState<User[]>([]);
   // const [filter, setFilter] = useState('');
@@ -49,14 +48,10 @@ const Menu: React.FunctionComponent<Props> = () => {
   //     .catch((e) => console.log(e));
   // }, []);
 
-  console.log(view);
   return (
-    <aside
-      className={`menu-home container-fluid col-md-4 col-12 p-0 m-0`}
-    >
+    <aside className={`menu-home container-fluid col-md-4 col-12 p-0 m-0`}>
       <CurrentUserProfile />
-      <ChatsHistory />
-      
+      {selectView(view)}
       {/* <Filter setFilter={setFilter} />
       <ChatsHistory
         chatsList={chatsList}
