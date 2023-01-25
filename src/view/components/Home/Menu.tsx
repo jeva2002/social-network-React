@@ -6,6 +6,7 @@
 // import ChatsHistory from './Menu/ChatsHistory';
 // import Filter from './Menu/Filter';
 import { useNavigate } from 'react-router-dom';
+import AddContacts from './Menu/AddContacts';
 import CurrentUserProfile from './Menu/CurrentUserProfile';
 
 interface Props {
@@ -37,6 +38,7 @@ const Menu: React.FunctionComponent<Props> = () => {
       className={`menu-home container-fluid col-md-4 col-12 p-0 m-0`}
     >
       <CurrentUserProfile />
+      <AddContacts />
       {/* <Filter setFilter={setFilter} />
       <ChatsHistory
         chatsList={chatsList}

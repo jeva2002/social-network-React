@@ -3,7 +3,7 @@ import LoginForm from '../components/Login/LoginForm';
 import { Formik } from 'formik';
 import { VALIDATE_LOGIN } from '../../model/validations';
 import { Auth } from '../../model/types';
-import { handleLogin } from '../../controller';
+import { handleLogin } from '../../controller/handler';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../controller/slices';
 import Swal from 'sweetalert2';

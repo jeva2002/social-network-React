@@ -5,19 +5,30 @@ export interface Auth {
   password: string;
 }
 
-export interface IValues {
-  name: string;
+export interface NewContact {
+  contact?: string;
   cel: number | string;
-  password: string;
-  profileImg: string;
-  description: string;
 }
 
 export interface ICurrentUser {
   currentUser: { id: string } | null;
 }
 
-export interface User {
+export interface UpdateUser {
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+  cel?: string | number;
+  password?: string;
+  profileImg?: string;
+  description?: string;
+  isConnected?: boolean;
+  lastTime?: string;
+  chats?: any[];
+  contacts?: any[];
+}
+
+export interface NewUser {
   firstname: string;
   lastname: string;
   email: string;
@@ -25,9 +36,10 @@ export interface User {
   password: string;
   profileImg?: string;
   description?: string;
-  isConnected?: string;
+  isConnected?: boolean;
   lastTime?: string;
-  chats?: [];
+  chats?: any[];
+  contacts?: any[];
 }
 
 export interface Message {

@@ -14,3 +14,8 @@ export const VALIDATE_REGISTER = yup.object().shape({
   profileImg: yup.string().required('Debe haber una foto de perfil'),
   description: yup.string(),
 });
+
+export const VALIDATE_ADD_CONTACT =  yup.object().shape({
+  contact: yup.string(),
+  cel: yup.number().required(),
+});

@@ -19,7 +19,7 @@ export const getWithQuery = async (
   collection: CollectionReference<DocumentData>,
   key: string,
   operator: queryOperators,
-  value: string
+  value: any
 ) => {
   const q = createQuery(collection, key, operator, value);
   const data = await getDocs(q);
@@ -28,5 +28,8 @@ export const getWithQuery = async (
   });
 };
 
-export const getOne = async (collection: string, id: string) =>
-  await getDoc(doc(database, collection, id));
+export const getOne = async (collection: string, id: string) => {
+  const data = await getDoc(doc(database, collection, id));
+  return data.data();
+}
+  

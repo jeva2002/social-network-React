@@ -1,18 +1,20 @@
 import close from '../../../../assets/x.svg';
+import addContact from '../../../../assets/user-plus.svg';
 import noPhoto from '../../../../assets/no-photo.svg';
+import contactsList from '../../../../assets/contacts-list.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCurrentUser } from '../../../../controller/slices';
 import { useState } from 'react';
 
 interface Props {}
 
-const CurrentUserProfile: React.FunctionComponent<Props> = (
-  props
-) => {
-  const { profileImg } = useSelector((state: any) => state.currentUser.currentUser);
-  const dispatch = useDispatch()
+const CurrentUserProfile: React.FunctionComponent<Props> = (props) => {
+  const { profileImg } = useSelector(
+    (state: any) => state.currentUser.currentUser
+  );
+  const dispatch = useDispatch();
 
-  const [profilePic, setProfilePic] = useState(profileImg)
+  const [profilePic, setProfilePic] = useState(profileImg);
 
   return (
     <section
@@ -32,11 +34,21 @@ const CurrentUserProfile: React.FunctionComponent<Props> = (
         }}
       />
       <img
+        src={contactsList}
+        alt='Lista'
+        style={{ width: 35, cursor: 'pointer' }}
+      />
+      <img
+        src={addContact}
+        alt='Agregar contacto'
+        style={{ width: 35, cursor: 'pointer' }}
+      />
+      <img
         src={close}
         alt='Cerrar sesión'
         style={{ width: 35, cursor: 'pointer' }}
         onClick={() => {
-          dispatch(clearCurrentUser())
+          dispatch(clearCurrentUser());
         }}
       />
     </section>

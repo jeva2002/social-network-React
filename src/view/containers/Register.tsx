@@ -1,11 +1,11 @@
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import RegisterForm from '../components/Register/RegisterForm';
-import { handleRegister } from '../../controller';
+import { handleRegister } from '../../controller/handler';
 import { VALIDATE_REGISTER } from '../../model/validations';
-import { User } from '../../model/types';
+import { NewUser } from '../../model/types';
 
-const INITIAL_VALUES: User = {
+const INITIAL_VALUES: NewUser = {
   firstname: '',
   lastname: '',
   email: '',
