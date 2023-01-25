@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { currentUserReducer } from '../../controller/slices';
+import { currentUserReducer, menuViewReducer } from '../../controller/slices';
 
 export const store = configureStore({
   reducer: {
     currentUser: currentUserReducer,
+    menuView: menuViewReducer, 
   },
 });

@@ -1,5 +1,3 @@
-import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
-
 export interface Auth {
   email: string;
   password: string;
@@ -7,6 +5,11 @@ export interface Auth {
 
 export interface NewContact {
   contact?: string;
+  cel: number | string;
+}
+
+export interface Contact {
+  contact: string;
   cel: number | string;
 }
 
@@ -42,21 +45,9 @@ export interface NewUser {
   contacts?: any[];
 }
 
-export interface Message {
-  sendBy: number;
-  date: string;
-  hour: string;
-  message: string;
-  viewed: boolean;
-}
-
-export interface Chat {
-  idUserOne: string;
-  idUserTwo: string;
-  chat: Message[];
-}
-
-export interface UpdateUser {
-  name?: string;
-  profileImg?: string;
+export interface ContactData {
+  cel: number;
+  description: string;
+  id: string;
+  profileImg: string;
 }

@@ -1,8 +1,18 @@
-interface Props {
-}
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Contact } from '../../../../model/types';
+import Chat from './ChatsHistory/Chat';
+
+interface Props {}
 
 const ChatsHistory: React.FunctionComponent<Props> = () => {
+  const currentUser = useSelector(
+    (state: any) => state.currentUser.currentUser
+  );
 
+  const [contactsList, setContactsList] = useState<Contact[]>(
+    currentUser.contacts
+  );
 
   return (
     <menu
@@ -12,7 +22,9 @@ const ChatsHistory: React.FunctionComponent<Props> = () => {
         overflowX: 'hidden',
       }}
     >
-
+      {contactsList.map((contact) => {
+        return <Chat key={contact.cel} contact={contact}/>;
+      })}
     </menu>
   );
 };

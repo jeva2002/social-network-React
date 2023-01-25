@@ -23,9 +23,10 @@ export const getWithQuery = async (
 ) => {
   const q = createQuery(collection, key, operator, value);
   const data = await getDocs(q);
-  return data.docs.map((item) => {
+  const items = data.docs.map((item) => {
     return { ...item.data(), id: item.id };
   });
+  return items
 };
 
 export const getOne = async (collection: string, id: string) => {
