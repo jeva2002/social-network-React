@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { CurrentUserData, ICurrentUser } from '../../model/types';
+import { CurrentUserData } from '../../model/types';
 
 interface InitialState {
   currentUser: CurrentUserData | undefined;
@@ -25,6 +25,8 @@ const currentUserSlice = createSlice({
     },
   },
 });
+
+export const getCurrentUser = (state: any) => state.currentUser.currentUser;
 
 export const { setCurrentUser, clearCurrentUser } = currentUserSlice.actions;
 

@@ -22,7 +22,7 @@ const contactsSlice = createSlice({
   },
 });
 
-export const getAllContacts = (state: any) => state.contacts;
+export const getAllContacts = (state: any) => state.contacts.contactData;
 
 export const { setContacts } = contactsSlice.actions;
 

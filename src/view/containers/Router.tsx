@@ -3,9 +3,8 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
-import App from './App';
-import { Login, Home } from './view/containers';
-import Register from './view/containers/Register';
+import App from '../../App';
+import { Login, Home, Register } from '.';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

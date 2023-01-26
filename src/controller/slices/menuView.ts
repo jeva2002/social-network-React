@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialValues = {
   currentView: 'chatHistory',
-  filter: ''
+  filter: '',
 };
 
 const menuViewSlice = createSlice({
@@ -13,11 +13,17 @@ const menuViewSlice = createSlice({
       state.currentView = action.payload;
     },
     setFilter: (state, action: PayloadAction<string>) => {
-      state.filter = action.payload
+      state.filter = action.payload;
+    },
+    clearFilter: (state) => {
+      state.filter = '';
     },
   },
 });
 
-export const { setMenuView, setFilter } = menuViewSlice.actions;
+export const getMenuView = (state: any) => state.menuView.currentView;
+export const getFilter = (state: any) => state.menuView.filter;
+
+export const { setMenuView, setFilter, clearFilter } = menuViewSlice.actions;
 
 export default menuViewSlice.reducer;

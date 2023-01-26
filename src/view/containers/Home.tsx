@@ -11,7 +11,7 @@ import {
   setCurrentUser,
 } from '../../controller/slices';
 import { listenDoc } from '../../model/db/crud';
-import { doc, DocumentData } from 'firebase/firestore';
+import { DocumentData } from 'firebase/firestore';
 import { formatCurrentUser } from '../../model/validations';
 import { collections } from '../../model/db/config';
 
@@ -44,7 +44,7 @@ const Home: React.FunctionComponent = (props) => {
     const listenActiveChats = (doc: DocumentData | undefined) => {
       dispatch(modifyChat(doc))
     }
-    const getActiveChats = (
+    const iterateActiveChats = (
       docs: (DocumentData | undefined)[],
     ) => {
       docs.forEach((doc) => {
@@ -53,7 +53,7 @@ const Home: React.FunctionComponent = (props) => {
         }
       });
     };
-    getActiveChats(activeChats);
+    iterateActiveChats(activeChats);
   }, []);
 
   if (!currentUser) {
@@ -61,7 +61,7 @@ const Home: React.FunctionComponent = (props) => {
   }
 
   return (
-    <div className='d-flex flex-md-row flex-column p-0 m-0'>
+    <main className='d-flex flex-md-row flex-column p-0 m-0'>
       <Menu />
       {/* {!profile ? (
         <Menu
@@ -86,7 +86,7 @@ const Home: React.FunctionComponent = (props) => {
         chatActive={chatActive}
         setModify={setModify}
       /> */}
-    </div>
+    </main>
   );
 };
 

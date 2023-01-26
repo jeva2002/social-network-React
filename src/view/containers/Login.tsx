@@ -17,7 +17,7 @@ const Login: React.FunctionComponent = () => {
   const navigate = useNavigate();
 
   return (
-    <div
+    <main
       className='d-flex flex-column gap-4 align-items-center justify-content-center'
       style={{
         minHeight: '100vh',
@@ -39,7 +39,7 @@ const Login: React.FunctionComponent = () => {
         <LoginForm />
       </Formik>
       <Link to='/register'>Regístrate gratis</Link>
-    </div>
+    </main>
   );
 };
 

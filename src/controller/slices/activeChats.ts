@@ -27,6 +27,8 @@ const activeChatsSlice = createSlice({
   },
 });
 
+export const getActiveChats = (state: any) => state.activeChats.activeChats;
+
 export const { setActiveChats, modifyChat } = activeChatsSlice.actions;
 
 export default activeChatsSlice.reducer;

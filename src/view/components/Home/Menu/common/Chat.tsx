@@ -6,7 +6,7 @@ interface Props {
     | { id: any; cel: any; description: any; profileImg: any; chat: any }
     | undefined;
   currentUser: any;
-  lastMessage?: boolean;
+  lastMessage: boolean;
 }
 
 const Chat: React.FunctionComponent<Props> = ({
@@ -15,7 +15,7 @@ const Chat: React.FunctionComponent<Props> = ({
   lastMessage,
 }) => {
   const [profilePic, setProfilePic] = useState(contact?.profileImg || noPhoto);
-  const [name, setName] = useState(contact?.cel);
+  const [name, setName] = useState<number | string>(contact?.cel);
 
   const nickname = currentUser?.contacts?.find(
     (e: any) => e.cel === contact?.cel
@@ -25,7 +25,7 @@ const Chat: React.FunctionComponent<Props> = ({
     if (nickname?.contact !== '') setName(nickname.contact);
   }, [nickname?.contact]);
 
-  if(contact){
+  if (contact) {
     return (
       <article
         className='d-flex border-bottom py-1 ps-3 gap-3'
@@ -42,15 +42,18 @@ const Chat: React.FunctionComponent<Props> = ({
           <h3 className='p-0 m-0' style={{ fontSize: 18 }}>
             {name}
           </h3>
-          {lastMessage ?? (
-            <small className='p-0 m-0' style={{ height: 18, overflow: 'hidden' }}>
+          {!lastMessage ? (
+            <small
+              className='p-0 m-0'
+              style={{ height: 18, overflow: 'hidden' }}
+            >
               {contact?.chat.messages.at(-1).message}
             </small>
-          )}
+          ) : null}
         </div>
       </article>
     );
-  } else return <></>
+  } else return <></>;
 };
 
 export default Chat;

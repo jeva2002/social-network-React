@@ -24,7 +24,7 @@ const Register: React.FunctionComponent = (props) => {
       validationSchema={VALIDATE_REGISTER}
       onSubmit={(values) => handleRegister(values)}
     >
-      <div
+      <main
         className='d-flex align-items-center justify-content-center'
         style={{
           minHeight: '100vh',
@@ -32,7 +32,7 @@ const Register: React.FunctionComponent = (props) => {
         }}
       >
         <RegisterForm />
-      </div>
+      </main>
     </Formik>
   );
 };

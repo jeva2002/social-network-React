@@ -1,67 +1,57 @@
-// import { disconnect } from '../../functions/services';
-// import { useState, useEffect } from 'react';
-
-// import {getChats} from '../../functions/services/';
-// import { Chat, User } from '../../functions/services/types';
-// import ChatsHistory from './Menu/ChatsHistory';
-// import Filter from './Menu/Filter';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { ContactData } from '../../../model/types';
 import AddContacts from './Menu/AddContacts';
-import ChatsHistory from './Menu/ChatsHistory';
-import ContactsList from './Menu/ContactsList';
+import ChatsList from './Menu/common/ChatsList';
+import Filter from './Menu/common/Filter';
 import CurrentUserProfile from './Menu/CurrentUserProfile';
 
-interface Props {
-  // user: User | undefined;
-  // setCurrentChat: React.Dispatch<React.SetStateAction<Chat | undefined>>;
-  // setChatActive: React.Dispatch<React.SetStateAction<boolean>>;
-  // chatActive: boolean;
-  // setProfile: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const selectView = (view: string) => {
+const selectView = (
+  view: string,
+  setFilter: React.Dispatch<React.SetStateAction<string>>,
+  filter: string,
+  contactsList: ContactData[],
+  activeChatsList: ContactData[]
+) => {
   switch (view) {
     case 'addContact':
       return <AddContacts />;
     case 'contactsList':
-      return <ContactsList />;
+      return (
+        <>
+          <Filter setFilter={setFilter} />
+          <ChatsList filter={filter} list={contactsList} lastMessage={true} />
+        </>
+      );
     default:
-      return <ChatsHistory />;
+      return (
+        <>
+          <Filter setFilter={setFilter} />
+          <ChatsList
+            filter={filter}
+            list={activeChatsList}
+            lastMessage={false}
+          />
+        </>
+      );
   }
 };
 
-const Menu: React.FunctionComponent<Props> = () => {
+const Menu: React.FunctionComponent = () => {
   const view = useSelector((state: any) => state.menuView.currentView);
+  const contacts: ContactData[] = useSelector(
+    (state: any) => state.contacts.contactData
+  );
+  const activeChats: ContactData[] = useSelector(
+    (state: any) => state.activeChats.activeChats
+  );
 
-  // const [chatsList, setChatsList] = useState<Chat[]>();
-  // const [contacts, setContacts] = useState<User[]>([]);
-  // const [filter, setFilter] = useState('');
-
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   getChats(user?.id)
-  //     .then((res) => {
-  //       setChatsList(res);
-  //       setCurrentChat(res[0]);
-  //     })
-  //     .catch((e) => console.log(e));
-  // }, []);
+  const [filter, setFilter] = useState('');
 
   return (
     <aside className={`menu-home container-fluid col-md-4 col-12 p-0 m-0`}>
       <CurrentUserProfile />
-      {selectView(view)}
-      {/* <Filter setFilter={setFilter} />
-      <ChatsHistory
-        chatsList={chatsList}
-        userId={user?.id}
-        setCurrentChat={setCurrentChat}
-        setChatActive={setChatActive}
-        setContacts={setContacts}
-        contacts={contacts}
-        filter={filter}
-      /> */}
+      {selectView(view, setFilter, filter, contacts, activeChats)}
     </aside>
   );
 };

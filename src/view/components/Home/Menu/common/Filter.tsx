@@ -3,10 +3,10 @@ import Form from 'react-bootstrap/Form';
 import search from '../../../../../assets/search.svg';
 
 interface Props {
-
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Filter: React.FunctionComponent<Props> = ({  }) => {
+const Filter: React.FunctionComponent<Props> = ({ setFilter }) => {
   const [input, setInput] = useState('');
 
   return (
@@ -25,7 +25,8 @@ const Filter: React.FunctionComponent<Props> = ({  }) => {
         style={{ borderRadius: 30 }}
         value={input}
         onChange={(e) => {
-          setInput(e.target.value);
+          setInput(e.currentTarget.value);
+          setFilter(e.currentTarget.value);
         }}
       />
     </div>
