@@ -3,6 +3,7 @@ import { createAccount, createDoc } from './create';
 import { getAll, getWithQuery, getOne } from './get';
 import { update } from './update';
 import { deleteDocument } from './delete';
+import { listenDoc } from './listeners';
 
 export {
   authenticateUser,
@@ -13,4 +14,5 @@ export {
   getOne,
   update,
   deleteDocument,
+  listenDoc
 };

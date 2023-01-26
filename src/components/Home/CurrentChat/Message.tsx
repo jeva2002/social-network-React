@@ -1,35 +1,35 @@
-import { useState } from 'react';
-import { Message } from '../../../functions/services/types';
-import arrow from '../../../assets/arrow-down.svg';
-import check from '../../../assets/check.svg';
-import FormControl from 'react-bootstrap/FormControl';
+// import { useState } from 'react';
+// import { Message } from '../../../functions/services/types';
+// import arrow from '../../../assets/arrow-down.svg';
+// import check from '../../../assets/check.svg';
+// import FormControl from 'react-bootstrap/FormControl';
 
 interface Props {
-  message: Message;
-  contactId: number | undefined;
-  handleDeleteMessage: (message: Message) => void;
-  handleEditMessage: (text: string, message: Message) => void;
+  // message: Message;
+  // contactId: number | undefined;
+  // handleDeleteMessage: (message: Message) => void;
+  // handleEditMessage: (text: string, message: Message) => void;
 }
 
 const MessageComponent: React.FunctionComponent<Props> = ({
-  message,
-  contactId,
-  handleDeleteMessage,
-  handleEditMessage,
+  // message,
+  // contactId,
+  // handleDeleteMessage,
+  // handleEditMessage,
 }) => {
-  const [showOptions, setShowOptions] = useState(false);
-  const [edit, setEdit] = useState(false);
-  const [updatedMessage, setUpdatedMessage] = useState(message.message);
+  // const [showOptions, setShowOptions] = useState(false);
+  // const [edit, setEdit] = useState(false);
+  // const [updatedMessage, setUpdatedMessage] = useState(message.message);
 
   return (
     <article
-      className={`col-md-6 col-9 p-2 px-4 my-3 mx-4 d-flex flex-column ${
-        contactId === message.sendBy
-          ? 'align-self-start contact-message'
-          : 'align-self-end user-message'
-      }`}
+      // className={`col-md-6 col-9 p-2 px-4 my-3 mx-4 d-flex flex-column ${
+      //   contactId === message.sendBy
+      //     ? 'align-self-start contact-message'
+      //     : 'align-self-end user-message'
+      // }`}
     >
-      <div className='d-flex justify-content-between position-relative'>
+      {/* <div className='d-flex justify-content-between position-relative'>
         {!edit ? (
           <p className='col-11' style={{ fontSize: 18 }}>
             {message.message}
@@ -106,7 +106,7 @@ const MessageComponent: React.FunctionComponent<Props> = ({
               : {}
           }
         />
-      </div>
+      </div> */}
     </article>
   );
 };

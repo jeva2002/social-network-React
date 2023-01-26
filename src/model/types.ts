@@ -45,10 +45,35 @@ export interface NewUser {
   contacts?: any[];
 }
 
+export interface CurrentUserData {
+  cel: number;
+  description: string;
+  email: string;
+  firstname: string;
+  id: string;
+  lastname: string;
+  profileImg: string;
+  contacts: Contact[];
+}
+
+export interface Message {
+  date: string;
+  hour: string;
+  message: string;
+  sendBy: string;
+  viewed: boolean;
+}
+
+export interface Chat {
+  id: string;
+  messages: Message[];
+  participants: string[];
+}
+
 export interface ContactData {
   cel: number;
   description: string;
   id: string;
   profileImg: string;
-  chat: [];
+  chat: Chat[];
 }

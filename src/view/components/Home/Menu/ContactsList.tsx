@@ -10,17 +10,9 @@ const ContactsList: React.FunctionComponent<IAppProps> = (props) => {
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
   );
-
-  const [contactsList, setContactsList] = useState<(ContactData | undefined)[]>(
-    []
+  const contacts: ContactData[] = useSelector(
+    (state: any) => state.contacts.contactData
   );
-
-  useEffect(() => {
-    const contacts: Contact[] = currentUser.contacts;
-    getContacts(contacts.map((contact) => Number(contact.cel))).then((res) =>
-      setContactsList(res)
-    );
-  }, [currentUser.contacts]);
 
   return (
     <menu
@@ -30,10 +22,10 @@ const ContactsList: React.FunctionComponent<IAppProps> = (props) => {
         overflowX: 'hidden',
       }}
     >
-      {contactsList?.map((contact, index) => {
+      {contacts.map((contact) => {
         return (
           <Chat
-            key={index}
+            key={contact?.id}
             contact={contact}
             currentUser={currentUser}
             lastMessage={true}

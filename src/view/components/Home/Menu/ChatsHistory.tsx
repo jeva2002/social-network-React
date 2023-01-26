@@ -3,21 +3,15 @@ import { useSelector } from 'react-redux';
 import { getActiveChats } from '../../../../controller/handler';
 import { ContactData } from '../../../../model/types';
 import Chat from './common/Chat';
+import Filter from './common/Filter';
 
-interface Props {}
-
-const ChatsHistory: React.FunctionComponent<Props> = () => {
+const ChatsHistory: React.FunctionComponent = () => {
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
   );
 
   const [contactsList, setContactsList] =
-    useState<
-      (
-        | ContactData
-        | undefined
-      )[]
-    >();
+    useState<(ContactData | undefined)[]>();
 
   useEffect(() => {
     getActiveChats(currentUser.id).then((res) => setContactsList(res));
@@ -31,8 +25,11 @@ const ChatsHistory: React.FunctionComponent<Props> = () => {
         overflowX: 'hidden',
       }}
     >
-      {contactsList?.map((contact, index) => {
-        return <Chat key={index} contact={contact} currentUser={currentUser} />;
+      <Filter />
+      {contactsList?.map((contact) => {
+        return (
+          <Chat key={contact?.id} contact={contact} currentUser={currentUser} />
+        );
       })}
     </menu>
   );

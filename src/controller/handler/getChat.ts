@@ -39,7 +39,6 @@ export const getContacts = (contacts: number[]) => {
       } else return undefined;
     });
   });
-  console.log(result)
   return result;
 }
 

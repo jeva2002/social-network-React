@@ -1,42 +1,42 @@
-import { useState } from 'react';
-import FormControl from 'react-bootstrap/FormControl';
-import close from '../../../assets/x.svg';
-import search from '../../../assets/search.svg';
-import { Chat, User } from '../../../functions/services/types';
+// import { useState } from 'react';
+// import FormControl from 'react-bootstrap/FormControl';
+// import close from '../../../assets/x.svg';
+// import search from '../../../assets/search.svg';
+// import { Chat, User } from '../../../functions/services/types';
 
 interface Props {
-  chat: Chat | undefined;
-  user: User | undefined;
-  setMessageDetail: React.Dispatch<React.SetStateAction<boolean>>;
-  style?: string;
+//   chat: Chat | undefined;
+//   user: User | undefined;
+//   setMessageDetail: React.Dispatch<React.SetStateAction<boolean>>;
+//   style?: string;
 }
 
 const SearchMessage: React.FunctionComponent<Props> = ({
-  chat,
-  user,
-  setMessageDetail,
-  style,
+  // chat,
+  // user,
+  // setMessageDetail,
+  // style,
 }) => {
-  const [filter, setFilter] = useState('');
+  // const [filter, setFilter] = useState('');
 
-  const filteredMessages = () => {
-    return chat?.chat.filter((e) =>
-      e.message.toLowerCase().match(filter.toLowerCase())
-    );
-  };
+  // const filteredMessages = () => {
+  //   return chat?.chat.filter((e) =>
+  //     e.message.toLowerCase().match(filter.toLowerCase())
+  //   );
+  // };
 
   return (
     <section
-      className={`${
-        !style ? '' : style
-      } d-flex flex-column gap-3 p-3`}
-      style={{
-        backgroundColor: '#f6f6f6',
-        height: '100vh',
-        right: '0',
-      }}
+      // className={`${
+      //   !style ? '' : style
+      // } d-flex flex-column gap-3 p-3`}
+      // style={{
+      //   backgroundColor: '#f6f6f6',
+      //   height: '100vh',
+      //   right: '0',
+      // }}
     >
-      <div className='d-flex gap-4 justify-content-center align-items-center'>
+      {/* <div className='d-flex gap-4 justify-content-center align-items-center'>
         <img
           src={close}
           alt='Cerrar'
@@ -86,7 +86,7 @@ const SearchMessage: React.FunctionComponent<Props> = ({
             </li>
           );
         })}
-      </ul>
+      </ul> */}
     </section>
   );
 };

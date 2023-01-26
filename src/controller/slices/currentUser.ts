@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
-import { ICurrentUser } from '../../model/types';
+import { CurrentUserData, ICurrentUser } from '../../model/types';
 
-const initialState: ICurrentUser = {
-  currentUser: null,
+interface InitialState {
+  currentUser: CurrentUserData | undefined;
+}
+
+const initialState: InitialState = {
+  currentUser: undefined,
 };
 
 const currentUserSlice = createSlice({
@@ -13,14 +16,12 @@ const currentUserSlice = createSlice({
   reducers: {
     setCurrentUser: (
       state,
-      action: PayloadAction<{
-        id: string;
-      } | null>
+      action: PayloadAction<CurrentUserData | undefined>
     ) => {
       state.currentUser = action.payload;
     },
     clearCurrentUser: (state) => {
-      state.currentUser = null;
+      state.currentUser = undefined;
     },
   },
 });

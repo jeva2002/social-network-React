@@ -1,23 +1,46 @@
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from '../../controller/handler';
 import { Navigate } from 'react-router-dom';
 import Menu from '../components/Home/Menu';
+import { Contact, ContactData, CurrentUserData } from '../../model/types';
+import { setContacts, setCurrentUser } from '../../controller/slices';
+import { listenDoc } from '../../model/db/crud';
+import { DocumentData } from 'firebase/firestore';
 
 const Home: React.FunctionComponent = (props) => {
-  // const [currentChat, setCurrentChat] = useState<Chat | undefined>();
-  // const [chatActive, setChatActive] = useState(false);
-  // const [profile, setProfile] = useState(false);
-  // const [modify, setModify] = useState(false)
-
-  // const { user, setUser } = useCurrentUser();
-
-  // useEffect(() => {
-  //   connect(user?.id);
-  //   Swal.fire(`Bienvenido ${user?.name}`);
-  // }, []);
-
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
   );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentUser) {
+      getContacts(
+        currentUser.contacts.map((contact: Contact) => Number(contact.cel))
+      ).then((res) => dispatch(setContacts(res)));
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    const listenCurrentUser = (doc: DocumentData | undefined, id: string) => {
+      if (doc) {
+        const user = { ...doc };
+        const formatedUser: CurrentUserData = {
+          cel: user.cel,
+          description: user.description,
+          email: user.email,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          id: id,
+          profileImg: user.profileImg,
+          contacts: user.contacts,
+        };
+        dispatch(setCurrentUser(formatedUser));
+      }
+    };
+    listenDoc(currentUser.id, listenCurrentUser);
+  }, []);
 
   if (!currentUser) {
     return <Navigate to='/' />;

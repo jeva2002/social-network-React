@@ -1,5 +1,5 @@
 import { firebaseConfig } from './firestoreConfig';
-import { usersCollection, chatsCollection } from './instances';
+import { usersCollection, chatsCollection, collections } from './instances';
 import { createQuery, queryOperators } from './query';
 
 export {
@@ -8,4 +8,5 @@ export {
   chatsCollection,
   createQuery,
   queryOperators,
+  collections
 };

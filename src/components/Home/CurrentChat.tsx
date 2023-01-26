@@ -1,66 +1,66 @@
-import { useEffect, useState } from 'react';
-import { getUserById } from '../../functions/services';
-import { Chat, Message, User } from '../../functions/services/types';
-import MessageComponent from './CurrentChat/Message';
-import search from '../../assets/search.svg';
-import arrow from '../../assets/arrow-left.svg';
-import ChatOptions from './CurrentChat/ChatOptions';
-import {
-  deleteMessage,
-  editMessage,
-  handleNewMessage,
-  handleOpenChat,
-} from '../../functions/controller';
-import SearchMessage from './CurrentChat/SearchMessage';
+// import { useEffect, useState } from 'react';
+// import { getUserById } from '../../functions/services';
+// import { Chat, Message, User } from '../../functions/services/types';
+// import MessageComponent from './CurrentChat/Message';
+// import search from '../../assets/search.svg';
+// import arrow from '../../assets/arrow-left.svg';
+// import ChatOptions from './CurrentChat/ChatOptions';
+// import {
+//   deleteMessage,
+//   editMessage,
+//   handleNewMessage,
+//   handleOpenChat,
+// } from '../../functions/controller';
+// import SearchMessage from './CurrentChat/SearchMessage';
 
 interface Props {
-  contactId: number | undefined;
-  chat: Chat | undefined;
-  setChatActive: React.Dispatch<React.SetStateAction<boolean>>;
-  chatActive: boolean;
-  setModify: React.Dispatch<React.SetStateAction<boolean>>;
+  // contactId: number | undefined;
+  // chat: Chat | undefined;
+  // setChatActive: React.Dispatch<React.SetStateAction<boolean>>;
+  // chatActive: boolean;
+  // setModify: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CurrentChat: React.FunctionComponent<Props> = ({
-  contactId,
-  chat,
-  setChatActive,
-  chatActive,
-  setModify,
+  // contactId,
+  // chat,
+  // setChatActive,
+  // chatActive,
+  // setModify,
 }) => {
-  const [user, setUser] = useState<User>();
-  const [messageDetail, setMessageDetail] = useState(false);
+  // const [user, setUser] = useState<User>();
+  // const [messageDetail, setMessageDetail] = useState(false);
 
-  const handleSubmit = (_text: string) => {
-    if (chat)
-      return handleNewMessage(
-        _text,
-        contactId === chat?.idUserOne ? chat?.idUserTwo : chat?.idUserOne,
-        chat
-      )?.then(() => setModify((value) => !value));
-  };
+  // const handleSubmit = (_text: string) => {
+  //   if (chat)
+  //     return handleNewMessage(
+  //       _text,
+  //       contactId === chat?.idUserOne ? chat?.idUserTwo : chat?.idUserOne,
+  //       chat
+  //     )?.then(() => setModify((value) => !value));
+  // };
 
-  const handleDeleteMessage = (message: Message) => {
-    deleteMessage(message, chat).then(() => setModify((value) => !value));
-  };
+  // const handleDeleteMessage = (message: Message) => {
+  //   deleteMessage(message, chat).then(() => setModify((value) => !value));
+  // };
 
-  const handleEditMessage = (text: string, message: Message) => {
-    editMessage(text, message, chat).then(() => setModify((value) => !value));
-  };
+  // const handleEditMessage = (text: string, message: Message) => {
+  //   editMessage(text, message, chat).then(() => setModify((value) => !value));
+  // };
 
-  useEffect(() => {
-    getUserById(contactId)
-      .then((res) => setUser(res))
-      .catch((e) => console.log(e));
-  }, [contactId]);
+  // useEffect(() => {
+  //   getUserById(contactId)
+  //     .then((res) => setUser(res))
+  //     .catch((e) => console.log(e));
+  // }, [contactId]);
 
-  useEffect(() => {
-    handleOpenChat(chat, user?.id);
-  }, [chat, user]);
+  // useEffect(() => {
+  //   handleOpenChat(chat, user?.id);
+  // }, [chat, user]);
 
   return (
     <>
-      <div
+      {/* <div
         className={`col-md-8 col-12 d-flex flex-column justify-content-center ${
           chatActive ? '' : 'hidden'
         }`}
@@ -133,7 +133,7 @@ const CurrentChat: React.FunctionComponent<Props> = ({
           setMessageDetail={setMessageDetail}
           style={`position-absolute col-md-4 col-12 ${chatActive ? '' : 'hidden'}`}
         />
-      ) : null}
+      ) : null} */}
     </>
   );
 };

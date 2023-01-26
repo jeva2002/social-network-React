@@ -1,38 +1,38 @@
-import { useState } from 'react';
-import { User } from '../../../functions/services/types';
-import edit from '../../../assets/edit-2.svg';
-import FormControl from 'react-bootstrap/esm/FormControl';
-import Button from 'react-bootstrap/Button';
-import updateUser from '../../../functions/controller/modifyUser';
-import camera from '../../../assets/camera.svg';
+// import { useState } from 'react';
+// import { User } from '../../../functions/services/types';
+// import edit from '../../../assets/edit-2.svg';
+// import FormControl from 'react-bootstrap/esm/FormControl';
+// import Button from 'react-bootstrap/Button';
+// import updateUser from '../../../functions/controller/modifyUser';
+// import camera from '../../../assets/camera.svg';
 
-interface Props {
-  user: User | undefined;
-  setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
-}
+// interface Props {
+//   user: User | undefined;
+//   setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+// }
 
-const Options: React.FunctionComponent<Props> = ({ user, setUser }) => {
-  const [editImg, setEditImg] = useState(false);
-  const [editName, setEditName] = useState(false);
-  const [img, setImg] = useState(user?.profileImg);
-  const [name, setName] = useState(user?.name);
-  const [mouseOver, setMouseOver] = useState(false);
+const Options: React.FunctionComponent = ({  }) => {
+  // const [editImg, setEditImg] = useState(false);
+  // const [editName, setEditName] = useState(false);
+  // const [img, setImg] = useState(user?.profileImg);
+  // const [name, setName] = useState(user?.name);
+  // const [mouseOver, setMouseOver] = useState(false);
 
   return (
     <form
-      className='m-0 d-flex flex-column gap-3'
-      onSubmit={(e) => {
-        e.preventDefault();
-        updateUser(
-          {
-            name: name,
-            profileImg: img,
-          },
-          user
-        ).then((res) => setUser(res));
-      }}
+      // className='m-0 d-flex flex-column gap-3'
+      // onSubmit={(e) => {
+      //   e.preventDefault();
+      //   updateUser(
+      //     {
+      //       name: name,
+      //       profileImg: img,
+      //     },
+      //     user
+      //   ).then((res) => setUser(res));
+      // }}
     >
-      <figure
+      {/* <figure
         className=' align-self-center my-3'
         style={{
           borderRadius: '50%',
@@ -119,7 +119,7 @@ const Options: React.FunctionComponent<Props> = ({ user, setUser }) => {
             Guardar
           </Button>
         </div>
-      ) : null}
+      ) : null} */}
     </form>
   );
 };

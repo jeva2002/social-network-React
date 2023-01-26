@@ -6,7 +6,7 @@ import { VALIDATE_ADD_CONTACT } from '../../../../model/validations';
 import Button from 'react-bootstrap/Button';
 import { addContactHandler } from '../../../../controller/handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentUser } from '../../../../controller/slices';
+import { setCurrentUser, setMenuView } from '../../../../controller/slices';
 import { getOne } from '../../../../model/db/crud';
 
 
@@ -21,7 +21,8 @@ const AddContacts: React.FunctionComponent = (props) => {
 
   const updateCurrentUser = async () => {
     const user = await getOne('users', currentUser.id)
-    if(user) dispatch(setCurrentUser({...user, id: user.id}))
+    console.log(user);
+    // if(user) dispatch(setCurrentUser({...user, id: user.id}))
   }
 
   return (
@@ -36,7 +37,7 @@ const AddContacts: React.FunctionComponent = (props) => {
         <TextField label='Nombre de contacto' name='contact' type='text' />
         <TextField label='Celular' name='cel' type='number' />
         <div className='mt-4 d-flex justify-content-evenly'>
-          <Button variant='outline-info'>Cancelar</Button>
+          <Button variant='outline-info' onClick={() => dispatch(setMenuView('chatHistory'))}>Cancelar</Button>
           <Button type='submit'>Crear</Button>
         </div>
       </Form>

@@ -6,16 +6,13 @@ import { Auth } from '../../model/types';
 import { handleLogin } from '../../controller/handler';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../controller/slices';
-import Swal from 'sweetalert2';
-
-interface ILoginProps {}
 
 const INITIAL_VALUES: Auth = {
   email: '',
   password: '',
 };
 
-const Login: React.FunctionComponent<ILoginProps> = (props) => {
+const Login: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,8 +30,8 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
         validationSchema={VALIDATE_LOGIN}
         onSubmit={async (values) => {
           const currentUser = await handleLogin(values);
-          if (currentUser[0]) {
-            dispatch(setCurrentUser(currentUser[0]));
+          if (currentUser) {
+            dispatch(setCurrentUser(currentUser));
             navigate('/home');
           }
         }}
