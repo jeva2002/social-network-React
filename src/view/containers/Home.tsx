@@ -2,26 +2,28 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActiveChats, getContacts } from '../../controller/handler';
 import { Navigate } from 'react-router-dom';
-import Menu from '../components/Home/Menu';
 import { Contact } from '../../model/types';
 import {
   modifyChat,
   setActiveChats,
   setContacts,
   setCurrentUser,
+  setUserOptions,
 } from '../../controller/slices';
 import { listenDoc } from '../../model/db/crud';
 import { DocumentData } from 'firebase/firestore';
 import { formatCurrentUser } from '../../model/validations';
 import { collections } from '../../model/db/config';
+import { SetUserOptionsView } from '../components/Home/SetGlobalView';
 
-const Home: React.FunctionComponent = (props) => {
+const Home: React.FunctionComponent = () => {
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
   );
   const activeChats = useSelector(
     (state: any) => state.activeChats.activeChats
   );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,7 +64,7 @@ const Home: React.FunctionComponent = (props) => {
 
   return (
     <main className='d-flex flex-md-row flex-column p-0 m-0'>
-      <Menu />
+      { SetUserOptionsView() }
       {/* {!profile ? (
         <Menu
           user={user}

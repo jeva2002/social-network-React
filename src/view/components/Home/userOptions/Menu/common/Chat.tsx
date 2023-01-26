@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import noPhoto from '../../../../../assets/no-photo.svg';
+import noPhoto from '../../../../../../assets/no-photo.svg';
 
 interface Props {
   contact:

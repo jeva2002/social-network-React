@@ -13,10 +13,6 @@ export interface Contact {
   cel: number | string;
 }
 
-export interface ICurrentUser {
-  currentUser: { id: string } | null;
-}
-
 export interface UpdateUser {
   firstname?: string;
   lastname?: string;

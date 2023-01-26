@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Contact, ContactData } from '../../../../../model/types';
+import { Contact, ContactData } from '../../../../../../model/types';
 import Chat from './Chat';
 
 interface Props {

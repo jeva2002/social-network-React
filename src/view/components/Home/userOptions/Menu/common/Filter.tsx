@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import search from '../../../../../assets/search.svg';
+import search from '../../../../../../assets/search.svg';
 
 interface Props {
   setFilter: React.Dispatch<React.SetStateAction<string>>;

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ContactData } from '../../../model/types';
+import { ContactData } from '../../../../model/types';
 import AddContacts from './Menu/AddContacts';
 import ChatsList from './Menu/common/ChatsList';
 import Filter from './Menu/common/Filter';
-import CurrentUserProfile from './Menu/CurrentUserProfile';
+import Nav from './Menu/Nav';
 
 const selectView = (
   view: string,
@@ -50,7 +50,7 @@ const Menu: React.FunctionComponent = () => {
 
   return (
     <aside className={`menu-home container-fluid col-md-4 col-12 p-0 m-0`}>
-      <CurrentUserProfile />
+      <Nav />
       {selectView(view, setFilter, filter, contacts, activeChats)}
     </aside>
   );

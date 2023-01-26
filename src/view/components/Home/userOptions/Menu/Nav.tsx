@@ -1,15 +1,15 @@
-import close from '../../../../assets/x.svg';
-import addContact from '../../../../assets/user-plus.svg';
-import noPhoto from '../../../../assets/no-photo.svg';
-import contactsList from '../../../../assets/contacts-list.svg';
-import chats from '../../../../assets/chats.svg';
+import close from '../../../../../assets/x.svg';
+import addContact from '../../../../../assets/user-plus.svg';
+import noPhoto from '../../../../../assets/no-photo.svg';
+import contactsList from '../../../../../assets/contacts-list.svg';
+import chats from '../../../../../assets/chats.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCurrentUser, setMenuView } from '../../../../controller/slices';
+import { clearCurrentUser, setMenuView, setUserOptions } from '../../../../../controller/slices';
 import { useState } from 'react';
 
 interface Props {}
 
-const CurrentUserProfile: React.FunctionComponent<Props> = (props) => {
+const Nav: React.FunctionComponent<Props> = (props) => {
   const { profileImg } = useSelector(
     (state: any) => state.currentUser.currentUser
   );
@@ -28,10 +28,11 @@ const CurrentUserProfile: React.FunctionComponent<Props> = (props) => {
         className='profile'
         src={profilePic}
         alt='Profile pic'
-        onError={() => setProfilePic(noPhoto)}
         style={{
           cursor: 'pointer',
         }}
+        onError={() => setProfilePic(noPhoto)}
+        onClick={() => dispatch(setUserOptions('profile'))}
       />
       <img
         src={chats}
@@ -63,4 +64,4 @@ const CurrentUserProfile: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-export default CurrentUserProfile;
+export default Nav;

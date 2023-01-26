@@ -1,13 +1,13 @@
 import { Formik, Form } from 'formik';
 import * as React from 'react';
-import TextField from '../../common/TextField';
-import { NewContact } from '../../../../model/types';
-import { VALIDATE_ADD_CONTACT } from '../../../../model/validations';
+import TextField from '../../../common/TextField';
+import { NewContact } from '../../../../../model/types';
+import { VALIDATE_ADD_CONTACT } from '../../../../../model/validations';
 import Button from 'react-bootstrap/Button';
-import { addContactHandler } from '../../../../controller/handler';
+import { addContactHandler } from '../../../../../controller/handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentUser, setMenuView } from '../../../../controller/slices';
-import { getOne } from '../../../../model/db/crud';
+import { setMenuView } from '../../../../../controller/slices';
+import { getOne } from '../../../../../model/db/crud';
 
 
 const INITIAL_VALUES: NewContact = {
@@ -20,9 +20,7 @@ const AddContacts: React.FunctionComponent = (props) => {
   const dispatch = useDispatch()
 
   const updateCurrentUser = async () => {
-    const user = await getOne('users', currentUser.id)
-    console.log(user);
-    // if(user) dispatch(setCurrentUser({...user, id: user.id}))
+    await getOne('users', currentUser.id)
   }
 
   return (

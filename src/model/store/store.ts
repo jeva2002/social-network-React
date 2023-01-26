@@ -3,6 +3,7 @@ import {
   activeChatsReducer,
   contactsReducer,
   currentUserReducer,
+  globalViewReducer,
   menuViewReducer,
 } from '../../controller/slices';
 
@@ -12,5 +13,6 @@ export const store = configureStore({
     menuView: menuViewReducer,
     contacts: contactsReducer,
     activeChats: activeChatsReducer,
+    globalView: globalViewReducer,
   },
 });
