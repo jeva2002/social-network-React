@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
+  activeChatsReducer,
   contactsReducer,
   currentUserReducer,
   menuViewReducer,
@@ -10,5 +11,6 @@ export const store = configureStore({
     currentUser: currentUserReducer,
     menuView: menuViewReducer,
     contacts: contactsReducer,
+    activeChats: activeChatsReducer,
   },
 });

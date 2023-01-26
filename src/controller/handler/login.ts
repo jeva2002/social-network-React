@@ -23,7 +23,8 @@ const handleLogin = async (values: Auth) => {
       lastname: user[0].lastname,
       id: user[0].id,
       profileImg: user[0].profileImg,
-      contacts: user[0].contacts
+      contacts: user[0].contacts,
+      chat: user[0].chat
     };
 
     Swal.fire(`Bienvenido ${formatedUser.firstname}`);

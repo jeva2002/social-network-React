@@ -1,25 +1,21 @@
-import {
-  doc,
-  DocumentData,
-  onSnapshot,
-} from 'firebase/firestore';
+import { doc, DocumentData, onSnapshot } from 'firebase/firestore';
 import { database } from '../../../App';
-import { collections } from '../config';
 
 export const listenDoc = (
-  currentUserId: string,
+  currentId: string,
+  collection: string,
   cb: (doc: DocumentData | undefined, id: string) => void
 ) => {
   onSnapshot(
-    doc(database, collections.users, currentUserId),
+    doc(database, collection, currentId),
     (doc) => {
       const data = doc.data();
-      if(data) {
-        cb(data, currentUserId)
+      if (data) {
+        cb(data, currentId);
       }
-      else {
-        throw console.log('Algo falló en el listener');
-      }
+    },
+    (err) => {
+      console.log(err);
     }
   );
 };

@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getContacts } from '../../../../controller/handler';
-import { Contact, ContactData } from '../../../../model/types';
+import { ContactData } from '../../../../model/types';
 import Chat from './common/Chat';
 
 interface IAppProps {}

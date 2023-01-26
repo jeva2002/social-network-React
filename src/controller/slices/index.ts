@@ -4,6 +4,8 @@ import { setMenuView, setFilter } from './menuView';
 import { getAllContacts, setContacts } from './contacts';
 import contactsReducer from './contacts';
 import menuViewReducer from './menuView';
+import { setActiveChats, modifyChat } from './activeChats';
+import activeChatsReducer from './activeChats';
 
 export {
   currentUserReducer,
@@ -15,4 +17,7 @@ export {
   contactsReducer,
   getAllContacts,
   setContacts,
+  activeChatsReducer,
+  setActiveChats,
+  modifyChat,
 };

@@ -54,6 +54,7 @@ export interface CurrentUserData {
   lastname: string;
   profileImg: string;
   contacts: Contact[];
+  chat: string[];
 }
 
 export interface Message {
