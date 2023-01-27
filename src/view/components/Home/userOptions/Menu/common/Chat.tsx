@@ -28,7 +28,7 @@ const Chat: React.FunctionComponent<Props> = ({
   if (contact) {
     return (
       <article
-        className='d-flex border-bottom py-1 ps-3 gap-3'
+        className='d-flex border-bottom py-2 ps-3 gap-3'
         style={{ maxHeight: 100, overflow: 'hidden' }}
         onClick={() => {}}
       >

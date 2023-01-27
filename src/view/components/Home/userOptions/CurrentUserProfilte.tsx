@@ -2,8 +2,12 @@ import { useDispatch } from 'react-redux';
 import { setUserOptions } from '../../../../controller/slices';
 import arrow from '../../../../assets/arrow-left.svg';
 import Profile from './UserProfile/Profile';
+import { useState } from 'react';
+import EditProfile from './UserProfile/EditProfile';
 
 const CurrentUserProfile: React.FunctionComponent = () => {
+  const [edit, setEdit] = useState<boolean>(false)
+
   const dispatch = useDispatch();
 
   return (
@@ -25,7 +29,7 @@ const CurrentUserProfile: React.FunctionComponent = () => {
         />
         <h2 className='pt-2' style={{ fontSize: 22 }}>Perfil</h2>
       </section>
-      <Profile />
+      {!edit ? <Profile setEdit={setEdit}/> : <EditProfile edit={edit} setEdit={setEdit}/>}
     </div>
   );
 };

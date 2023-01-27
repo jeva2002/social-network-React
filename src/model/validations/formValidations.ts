@@ -15,7 +15,14 @@ export const VALIDATE_REGISTER = yup.object().shape({
   description: yup.string(),
 });
 
-export const VALIDATE_ADD_CONTACT =  yup.object().shape({
+export const VALIDATE_ADD_CONTACT = yup.object().shape({
   contact: yup.string(),
   cel: yup.number().required(),
+});
+
+export const VALIDATE_UPDATE_CURRENT_USER = yup.object().shape({
+  profileImg: yup.string(),
+  firstname: yup.string(),
+  lastname: yup.string(),
+  description: yup.string(),
 });

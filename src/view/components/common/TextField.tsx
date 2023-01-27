@@ -11,6 +11,9 @@ interface Props {
   name: string;
   type: string;
   isTextArea?: TextArea;
+  aditionalProps?: {
+    autoComplete: true;
+  };
 }
 
 const TextField: React.FunctionComponent<Props> = ({
@@ -20,20 +23,15 @@ const TextField: React.FunctionComponent<Props> = ({
   isTextArea,
 }) => {
   const [field, meta] = useField(name);
-  
+
   const textArea = isTextArea ?? {};
 
   return (
     <Form.Group className='mb-3'>
       <Form.Label>{label}</Form.Label>
-      <Form.Control
-        {...field}
-        type={type}
-        placeholder={label}
-        {...textArea}
-      />
+      <Form.Control {...field} type={type} placeholder={label} {...textArea}/>
       {meta.touched && meta.error ? (
-        <div className='error ms-3'>{meta.error}</div>
+        <div className='error ms-3 mt-1'>{meta.error}</div>
       ) : null}
     </Form.Group>
   );

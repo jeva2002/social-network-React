@@ -5,7 +5,7 @@ import { VALIDATE_LOGIN } from '../../model/validations';
 import { Auth } from '../../model/types';
 import { handleLogin } from '../../controller/handler';
 import { useDispatch } from 'react-redux';
-import { setCurrentUser } from '../../controller/slices';
+import { setCurrentUser, setUserOptions } from '../../controller/slices';
 
 const INITIAL_VALUES: Auth = {
   email: '',

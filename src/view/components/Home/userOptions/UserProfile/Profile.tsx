@@ -5,7 +5,11 @@ import noPhoto from '../../../../../assets/no-photo.svg';
 import camera from '../../../../../assets/camera.svg';
 import edit from '../../../../../assets/edit-2.svg';
 
-const Profile: React.FunctionComponent = () => {
+interface Props {
+  setEdit: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Profile: React.FunctionComponent<Props> = ({ setEdit }) => {
   const currentUser: CurrentUserData = useSelector(
     (state: any) => state.currentUser.currentUser
   );
@@ -47,6 +51,7 @@ const Profile: React.FunctionComponent = () => {
               borderRadius: '50%',
               backgroundColor: '#bbb',
             }}
+            onClick={() => setEdit(true)}
           >
             <img src={camera} alt='Editar' style={{ width: 50 }} />
             <small>Cambiar imagen</small>
@@ -56,9 +61,14 @@ const Profile: React.FunctionComponent = () => {
       <div className='col-12'>
         <div className='d-flex justify-content-between align-items-center border-bottom border-success pb-2 mb-4'>
           <h4 className='pt-3'>Nombre</h4>
-          <img src={edit} alt='Editar contenido' style={{
-            cursor: 'pointer'
-          }}/>
+          <img
+            src={edit}
+            alt='Editar contenido'
+            style={{
+              cursor: 'pointer',
+            }}
+            onClick={() => setEdit(true)}
+          />
         </div>
         <h2>{currentUser.firstname + ' ' + currentUser.lastname}</h2>
         <h3>{currentUser.cel}</h3>
