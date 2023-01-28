@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CurrentUserData } from '../../../../../model/types';
-import noPhoto from '../../../../../assets/no-photo.svg';
-import camera from '../../../../../assets/camera.svg';
-import edit from '../../../../../assets/edit-2.svg';
+import noPhoto from '../../../../../assets/icons/no-photo.svg';
+import camera from '../../../../../assets/icons/camera.svg';
+import edit from '../../../../../assets/icons/edit-2.svg';
 
 interface Props {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;

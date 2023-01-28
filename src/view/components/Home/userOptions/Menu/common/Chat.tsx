@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import noPhoto from '../../../../../../assets/no-photo.svg';
+import { useDispatch } from 'react-redux';
+import noPhoto from '../../../../../../assets/icons/no-photo.svg';
+import { setCurrentChat } from '../../../../../../controller/slices';
+import { ContactData } from '../../../../../../model/types';
 
 interface Props {
   contact:
-    | { id: any; cel: any; description: any; profileImg: any; chat: any }
+    | ContactData
     | undefined;
   currentUser: any;
   lastMessage: boolean;
@@ -15,7 +18,9 @@ const Chat: React.FunctionComponent<Props> = ({
   lastMessage,
 }) => {
   const [profilePic, setProfilePic] = useState(contact?.profileImg || noPhoto);
-  const [name, setName] = useState<number | string>(contact?.cel);
+  const [name, setName] = useState<number | undefined>(contact?.cel);
+
+  const dispatch = useDispatch()
 
   const nickname = currentUser?.contacts?.find(
     (e: any) => e.cel === contact?.cel
@@ -28,9 +33,9 @@ const Chat: React.FunctionComponent<Props> = ({
   if (contact) {
     return (
       <article
-        className='d-flex border-bottom py-2 ps-3 gap-3'
+        className='menu-chat d-flex border-bottom py-2 ps-3 gap-3 m-0'
         style={{ maxHeight: 100, overflow: 'hidden' }}
-        onClick={() => {}}
+        onClick={() => dispatch(setCurrentChat(contact))}
       >
         <img
           className='profile'
@@ -47,7 +52,7 @@ const Chat: React.FunctionComponent<Props> = ({
               className='p-0 m-0'
               style={{ height: 18, overflow: 'hidden' }}
             >
-              {contact?.chat.messages.at(-1).message}
+              {contact?.chat.messages.at(-1)?.message}
             </small>
           ) : null}
         </div>

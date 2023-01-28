@@ -10,10 +10,11 @@ import {
   setCurrentUser,
 } from '../../controller/slices';
 import { listenDoc } from '../../model/db/crud';
-import { DocumentData } from 'firebase/firestore';
+import { DocumentData, Unsubscribe } from 'firebase/firestore';
 import { formatCurrentUser } from '../../model/validations';
 import { collections } from '../../model/db/config';
 import UserOptions from '../components/Home/UserOptions';
+import ChatOptions from '../components/Home/ChatOptions';
 
 const Home: React.FunctionComponent = () => {
   const currentUser = useSelector(
@@ -26,21 +27,37 @@ const Home: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    let unsubscribe: Unsubscribe | undefined;
+
     if (currentUser) {
       getContacts(
         currentUser.contacts.map((contact: Contact) => Number(contact.cel))
-      ).then((res) => dispatch(setContacts(res)));
-      getActiveChats(currentUser?.id).then((res) =>
+      ).then((res) => {
+        dispatch(setContacts(res));
+        const listenCurrentUser = (
+          doc: DocumentData | undefined,
+          id: string
+        ) => {
+          dispatch(setCurrentUser(formatCurrentUser(doc, id)));
+        };
+        unsubscribe = listenDoc(
+          currentUser?.id,
+          collections.users,
+          listenCurrentUser
+        );
+      });
+
+      getActiveChats(currentUser?.id).then((res: any) =>
         dispatch(setActiveChats(res))
       );
     }
-  }, [currentUser]);
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
-    const listenCurrentUser = (doc: DocumentData | undefined, id: string) => {
-      dispatch(setCurrentUser(formatCurrentUser(doc, id)));
-    };
-    listenDoc(currentUser?.id, collections.users, listenCurrentUser);
+    const listenersList: Unsubscribe[] = [];
 
     const listenActiveChats = (doc: DocumentData | undefined) => {
       dispatch(modifyChat(doc));
@@ -48,12 +65,17 @@ const Home: React.FunctionComponent = () => {
     const iterateActiveChats = (docs: (DocumentData | undefined)[]) => {
       docs.forEach((doc) => {
         if (doc) {
-          listenDoc(doc.chat.id, collections.chats, listenActiveChats);
+          listenersList.push(
+            listenDoc(doc.chat.id, collections.chats, listenActiveChats)
+          );
         }
       });
     };
     iterateActiveChats(activeChats);
-  }, []);
+    return () => {
+      listenersList.forEach((listener) => listener());
+    };
+  }, [activeChats, dispatch]);
 
   if (!currentUser) {
     return <Navigate to='/' />;
@@ -61,29 +83,7 @@ const Home: React.FunctionComponent = () => {
     return (
       <main className='d-flex flex-md-row flex-column p-0 m-0'>
         <UserOptions />
-        {/* {!profile ? (
-          <Menu
-            user={user}
-            setCurrentChat={setCurrentChat}
-            setChatActive={setChatActive}
-            chatActive={chatActive}
-            setProfile={setProfile}
-          />
-        ) : (
-          <Profile user={user} setUser={setUser} setProfile={setProfile} />
-        )}
-  
-        <CurrentChat
-          contactId={
-            user?.id === currentChat?.idUserOne
-              ? currentChat?.idUserTwo
-              : currentChat?.idUserOne
-          }
-          chat={currentChat}
-          setChatActive={setChatActive}
-          chatActive={chatActive}
-          setModify={setModify}
-        /> */}
+        <ChatOptions />
       </main>
     );
   }

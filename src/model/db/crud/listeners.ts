@@ -6,12 +6,12 @@ export const listenDoc = (
   collection: string,
   cb: (doc: DocumentData | undefined, id: string) => void
 ) => {
-  onSnapshot(
+  return onSnapshot(
     doc(database, collection, currentId),
     (doc) => {
       const data = doc.data();
       if (data) {
-        cb(data, currentId);
+        cb(data, currentId)
       }
     },
     (err) => {

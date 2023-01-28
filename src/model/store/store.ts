@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   activeChatsReducer,
   contactsReducer,
+  currentChatReducer,
   currentUserReducer,
   globalViewReducer,
   menuViewReducer,
@@ -14,5 +15,6 @@ export const store = configureStore({
     contacts: contactsReducer,
     activeChats: activeChatsReducer,
     globalView: globalViewReducer,
+    currentChat: currentChatReducer,
   },
 });

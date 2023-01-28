@@ -14,7 +14,7 @@ const ChatsList: React.FunctionComponent<Props> = ({ filter, list, lastMessage }
 
   return (
     <menu
-      className='container-fluid d-flex flex-column px-2 m-0'
+      className='d-flex flex-column px-2 m-0 p-0'
       style={{
         overflowY: 'auto',
         overflowX: 'hidden',

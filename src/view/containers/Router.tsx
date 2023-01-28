@@ -4,7 +4,9 @@ import {
   Route,
 } from 'react-router-dom';
 import App from '../../App';
-import { Login, Home, Register } from '.';
+import Login from './Login';
+import Register from './Register';
+import Home from './Home';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -6,8 +6,10 @@ import { getAllContacts, setContacts } from './contacts';
 import menuViewReducer from './menuView';
 import activeChatsReducer from './activeChats';
 import { setActiveChats, modifyChat, getActiveChats } from './activeChats';
-import globalViewReducer from './globalView'
-import { setChatOptions, setUserOptions } from './globalView'
+import globalViewReducer from './globalView';
+import { setChatOptions, setUserOptions } from './globalView';
+import currentChatReducer from './currentChat';
+import { setCurrentChat } from './currentChat';
 
 export {
   currentUserReducer,
@@ -24,5 +26,7 @@ export {
   getActiveChats,
   globalViewReducer,
   setChatOptions,
-  setUserOptions
+  setUserOptions,
+  currentChatReducer,
+  setCurrentChat,
 };

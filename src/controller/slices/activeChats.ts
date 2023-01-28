@@ -20,10 +20,12 @@ const activeChatsSlice = createSlice({
       state.activeChats = action.payload;
     },
     modifyChat: (state, action) => {
-      const { activeChatId, chat } = action.payload
-      const activeChat = state.activeChats.find(item => item?.id === activeChatId);
-      if(activeChat) activeChat.chat = chat;
-    }
+      const { activeChatId, chat } = action.payload;
+      const activeChat = state.activeChats.find(
+        (item) => item?.id === activeChatId
+      );
+      if (activeChat) activeChat.chat = chat;
+    },
   },
 });
 

@@ -1,57 +1,62 @@
-.bubble {
-  position: relative;
-  background: #32557f;
-  border-radius: 10px;
-}
+.current-chat {
+  height: 100vh;
 
-.contact-message {
-  background-color: #fefefe;
-  @extend .bubble;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 30%;
-    width: 0;
-    height: 0;
-    border: 13px solid transparent;
-    border-right-color: #fefefe;
-    border-left: 0;
-    margin-top: -13px;
-    margin-left: -13px;
+  .messages-list {
+    background-image: url('../../assets/bg/messages-list.jpg');
+    height: 80%;
   }
-}
 
-.user-message {
-  background-color: #b1e4bc;
-  @extend .bubble;
-
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 30%;
-    width: 0;
-    height: 0;
-    border: 13px solid transparent;
-    border-left-color: #b1e4bc;
-    border-right: 0;
-    margin-top: -13px;
-    margin-right: -13px;
+  .bubble {
+    position: relative;
+    background: #32557f;
+    border-radius: 10px;
   }
-}
 
-small {
-  color: #666;
-}
+  .contact-message {
+    background-color: #fefefe;
+    @extend .bubble;
 
-.menu-select:hover {
-  color: white;
-}
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 30%;
+      width: 0;
+      height: 0;
+      border: 13px solid transparent;
+      border-right-color: #fefefe;
+      border-left: 0;
+      margin-top: -13px;
+      margin-left: -13px;
+    }
+  }
 
-@media screen and (max-width: 765px) {
-  .hidden {
-    display: none !important;
+  .user-message {
+    background-color: #b1e4bc;
+    @extend .bubble;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 30%;
+      width: 0;
+      height: 0;
+      border: 13px solid transparent;
+      border-left-color: #b1e4bc;
+      border-right: 0;
+      margin-top: -13px;
+      margin-right: -13px;
+    }
+  }
+
+  .menu-select:hover {
+    color: white;
+  }
+
+  @media screen and (max-width: 765px) {
+    .hidden {
+      display: none !important;
+    }
   }
 }

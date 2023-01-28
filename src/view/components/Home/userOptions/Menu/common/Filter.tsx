@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import search from '../../../../../../assets/search.svg';
+import search from '../../../../../../assets/icons/search.svg';
 
 interface Props {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
@@ -11,10 +11,7 @@ const Filter: React.FunctionComponent<Props> = ({ setFilter }) => {
 
   return (
     <div
-      className='d-flex m-0 p-4 position-relative align-items-center'
-      style={{
-        backgroundColor: '#f6f6f6',
-      }}
+      className='gray d-flex m-0 p-4 position-relative align-items-center'
     >
       <span className='position-absolute ms-2'>
         <img src={search} alt='Buscar' />

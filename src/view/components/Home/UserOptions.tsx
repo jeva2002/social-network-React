@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { useSelector } from 'react-redux';
-import CurrentUserProfile from './userOptions/CurrentUserProfilte';
+import CurrentUserProfile from './userOptions/CurrentUserProfile';
 import Menu from './userOptions/Menu';
 
 const setUserOptionsView = (userOptions: string) => {

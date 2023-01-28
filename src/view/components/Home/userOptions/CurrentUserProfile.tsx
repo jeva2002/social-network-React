@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { setUserOptions } from '../../../../controller/slices';
-import arrow from '../../../../assets/arrow-left.svg';
+import arrow from '../../../../assets/icons/arrow-left.svg';
 import Profile from './UserProfile/Profile';
 import { useState } from 'react';
 import EditProfile from './UserProfile/EditProfile';

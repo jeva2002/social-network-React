@@ -1,8 +1,8 @@
-import close from '../../../../../assets/x.svg';
-import addContact from '../../../../../assets/user-plus.svg';
-import noPhoto from '../../../../../assets/no-photo.svg';
-import contactsList from '../../../../../assets/contacts-list.svg';
-import chats from '../../../../../assets/chats.svg';
+import close from '../../../../../assets/icons/x.svg';
+import addContact from '../../../../../assets/icons/user-plus.svg';
+import noPhoto from '../../../../../assets/icons/no-photo.svg';
+import contactsList from '../../../../../assets/icons/contacts-list.svg';
+import chats from '../../../../../assets/icons/chats.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCurrentUser, setMenuView, setUserOptions } from '../../../../../controller/slices';
 import { useState } from 'react';
@@ -19,10 +19,7 @@ const Nav: React.FunctionComponent<Props> = (props) => {
 
   return (
     <section
-      className='px-3 py-2 d-flex justify-content-between gap-1'
-      style={{
-        backgroundColor: '#f6f6f6',
-      }}
+      className='gray px-3 py-2 d-flex justify-content-between gap-1'
     >
       <img
         className='profile'
