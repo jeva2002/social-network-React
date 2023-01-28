@@ -2,9 +2,8 @@ import { FirebaseError } from 'firebase/app';
 import Swal from 'sweetalert2';
 import { collections } from '../../model/db/config';
 import { getOne, update } from '../../model/db/crud';
-import { Chat, ContactData, Message } from '../../model/types';
+import { ContactData, Message } from '../../model/types';
 import { DateTime } from 'luxon';
-import currentChat from '../slices/currentChat';
 
 export const sendMessage = async (
   chatId: string,

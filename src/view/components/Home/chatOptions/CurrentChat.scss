@@ -2,7 +2,7 @@
   height: 100vh;
 
   .messages-list {
-    background-image: url('../../assets/bg/messages-list.jpg');
+    background-image: url('../../../../assets/bg/messages-list.jpg');
     height: 80%;
     overflow-y: auto;
   }
@@ -51,5 +51,11 @@
 
   .menu-select:hover {
     color: white;
+  }
+
+  .send {
+    position: absolute;
+    bottom: 5px;
+    left: 90%;
   }
 }

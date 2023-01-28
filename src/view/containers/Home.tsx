@@ -65,12 +65,10 @@ const Home: React.FunctionComponent = () => {
 
     const listenActiveChats = (doc: DocumentData | undefined) => {
       dispatch(modifyChat(doc));
-      if(currentChat){
-        if(currentChat.chat.id === doc?.id){
-          const chat = {...currentChat};
-          chat.chat = doc;
-          dispatch(setCurrentChat(chat))
-        }
+      if (currentChat?.chat.id === doc?.id) {
+        const chat = { ...currentChat };
+        chat.chat = doc;
+        dispatch(setCurrentChat(chat));
       }
     };
     const iterateActiveChats = (docs: (DocumentData | undefined)[]) => {
@@ -96,8 +94,8 @@ const Home: React.FunctionComponent = () => {
   } else {
     return (
       <main className='d-flex flex-md-row flex-column p-0 m-0'>
-        <UserOptions active={active} setActive={setActive}/>
-        <ChatOptions active={active} setActive={setActive}/>
+        <UserOptions active={active} setActive={setActive} />
+        <ChatOptions active={active} setActive={setActive} />
       </main>
     );
   }

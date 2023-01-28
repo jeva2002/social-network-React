@@ -2,6 +2,7 @@ import { useState } from 'react';
 import smile from '../../../../../assets/icons/smile.svg';
 import clip from '../../../../../assets/icons/paperclip.svg';
 import mic from '../../../../../assets/icons/mic.svg';
+import send from '../../../../../assets/icons/send.svg';
 import FormControl from 'react-bootstrap/FormControl';
 import { sendMessage } from '../../../../../controller/handler';
 import { useSelector } from 'react-redux';
@@ -22,7 +23,7 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId }) => {
       <img className='icon click col-1' src={smile} alt='Emojis' />
       <img className='icon click col-1' src={clip} alt='Files' />
       <form
-        className='col-9'
+        className='col-9 position-relative'
         onSubmit={(e) => {
           e.preventDefault();
           sendMessage(chatId, currentUser.id, input);
@@ -38,6 +39,12 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId }) => {
           onChange={(e) => {
             setInput(e.target.value);
           }}
+        />
+        <img
+          className='send icon click'
+          src={send}
+          alt='Enviar'
+          onClick={() => sendMessage(chatId, currentUser.id, input)}
         />
       </form>
       <img className='icon click col-1' src={mic} alt='Audio' />
