@@ -1,6 +1,6 @@
 import { FirebaseError } from 'firebase/app';
 import Swal from 'sweetalert2';
-import { queryOperators, usersCollection } from '../../model/db/config';
+import { collections, queryOperators, usersCollection } from '../../model/db/config';
 import { getOne, getWithQuery, update } from '../../model/db/crud';
 import { NewContact } from '../../model/types';
 
@@ -19,7 +19,7 @@ const validateCurrentUser = (values: NewContact, currentUser: any) => {
 const updateCurrentUser = async (values: NewContact, id: any) => {
   const currentUser = await getOne('users', id);
   if (currentUser)
-    return await update(id, {
+    return await update(id, collections.users, {
       ...currentUser,
       contacts: [...currentUser.contacts, { ...values }],
     });

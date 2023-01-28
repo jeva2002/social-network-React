@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Contact, ContactData } from '../../../../../../model/types';
 import Chat from './Chat';
@@ -5,12 +6,18 @@ import Chat from './Chat';
 interface Props {
   filter: string;
   list: ContactData[];
-  lastMessage: boolean
+  lastMessage: boolean;
 }
-const ChatsList: React.FunctionComponent<Props> = ({ filter, list, lastMessage }) => {
+const ChatsList: React.FunctionComponent<Props> = ({
+  filter,
+  list,
+  lastMessage,
+}) => {
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
   );
+
+  const [user, setUser] = useState(currentUser);
 
   return (
     <menu
@@ -22,19 +29,19 @@ const ChatsList: React.FunctionComponent<Props> = ({ filter, list, lastMessage }
     >
       {list
         .filter((contact) => {
-          const nickname = currentUser?.contacts?.find(
+          const nickname = user?.contacts?.find(
             (e: Contact) => e.cel === contact?.cel
           );
-          return `${
-            nickname.contact !== '' ? nickname.contact : nickname.cel
-          }`.toLowerCase().includes(filter);
+          return `${nickname.contact !== '' ? nickname.contact : nickname.cel}`
+            .toLowerCase()
+            .includes(filter);
         })
         .map((contact) => {
           return (
             <Chat
               key={contact?.id}
               contact={contact}
-              currentUser={currentUser}
+              currentUser={user}
               lastMessage={lastMessage}
             />
           );

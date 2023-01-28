@@ -27,7 +27,7 @@ const CurrentChat: React.FunctionComponent = () => {
     <section className='current-chat col-md-8 col-12 d-flex flex-column'>
       <CurrentContact currentChat={currentChat} />
       <MessagesList currentChat={currentChat} />
-      <ChatMenu />
+      <ChatMenu chatId={currentChat?.chat?.id} />
     </section>
   );
 };

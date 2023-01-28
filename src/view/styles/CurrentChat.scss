@@ -4,6 +4,7 @@
   .messages-list {
     background-image: url('../../assets/bg/messages-list.jpg');
     height: 80%;
+    overflow-y: auto;
   }
 
   .bubble {

@@ -26,7 +26,7 @@ export const updateCurrentUser = async (
         password: user.password,
         profileImg: updateData.profileImg,
       };
-      await update(id, updatedUser);
+      await update(id, collections.users, updatedUser);
       Swal.fire('Usuario actualizado corectamente');
     }
   } catch (error: Error | FirebaseError | unknown) {

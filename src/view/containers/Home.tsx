@@ -7,6 +7,7 @@ import {
   modifyChat,
   setActiveChats,
   setContacts,
+  setCurrentChat,
   setCurrentUser,
 } from '../../controller/slices';
 import { listenDoc } from '../../model/db/crud';
@@ -22,6 +23,9 @@ const Home: React.FunctionComponent = () => {
   );
   const activeChats = useSelector(
     (state: any) => state.activeChats.activeChats
+  );
+  const currentChat = useSelector(
+    (state: any) => state.currentChat.currentChat
   );
 
   const dispatch = useDispatch();
@@ -61,6 +65,13 @@ const Home: React.FunctionComponent = () => {
 
     const listenActiveChats = (doc: DocumentData | undefined) => {
       dispatch(modifyChat(doc));
+      if(currentChat){
+        if(currentChat.chat.id === doc?.id){
+          const chat = {...currentChat};
+          chat.chat = doc;
+          dispatch(setCurrentChat(chat))
+        }
+      }
     };
     const iterateActiveChats = (docs: (DocumentData | undefined)[]) => {
       docs.forEach((doc) => {
@@ -72,6 +83,7 @@ const Home: React.FunctionComponent = () => {
       });
     };
     iterateActiveChats(activeChats);
+
     return () => {
       listenersList.forEach((listener) => listener());
     };

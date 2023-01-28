@@ -3,6 +3,7 @@ import handleRegister from './register';
 import addContactHandler from './addContact';
 import { getContacts, getActiveChats } from './getChat';
 import { updateCurrentUser } from './updateCurrentUser';
+import { sendMessage } from './updateChat';
 
 export {
   handleLogin,
@@ -11,4 +12,5 @@ export {
   getContacts,
   getActiveChats,
   updateCurrentUser,
+  sendMessage
 };

@@ -18,13 +18,17 @@ const Chat: React.FunctionComponent<Props> = ({
   lastMessage,
 }) => {
   const [profilePic, setProfilePic] = useState(contact?.profileImg || noPhoto);
-  const [name, setName] = useState<number | undefined>(contact?.cel);
+  const [name, setName] = useState<number | undefined>(contact?.cel);  
 
   const dispatch = useDispatch()
 
   const nickname = currentUser?.contacts?.find(
     (e: any) => e.cel === contact?.cel
   );
+
+  useEffect(() => {
+    if (nickname?.contact !== '') setName(nickname.contact);
+  }, [nickname?.contact]);
 
   useEffect(() => {
     if (nickname?.contact !== '') setName(nickname.contact);

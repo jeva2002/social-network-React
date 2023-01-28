@@ -9,7 +9,7 @@ export const listenDoc = (
   return onSnapshot(
     doc(database, collection, currentId),
     (doc) => {
-      const data = doc.data();
+      const data = {...doc.data(), id: doc.id};
       if (data) {
         cb(data, currentId)
       }
