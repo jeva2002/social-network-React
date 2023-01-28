@@ -1,4 +1,13 @@
-.menu-chat:hover {
-  background-color: darken(#f6f6f6, 2);
-  cursor: pointer;
+.menu-home {
+  height: 100vh;
+
+  .menu-chat:hover {
+    background-color: darken(#f6f6f6, 2);
+    cursor: pointer;
+  }
+
+  .chats-list {
+    height: 79%;
+    overflow-y: auto;
+  }
 }

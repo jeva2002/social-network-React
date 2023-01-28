@@ -7,11 +7,13 @@ interface Props {
   filter: string;
   list: ContactData[];
   lastMessage: boolean;
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const ChatsList: React.FunctionComponent<Props> = ({
   filter,
   list,
   lastMessage,
+  setActive,
 }) => {
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
@@ -21,7 +23,7 @@ const ChatsList: React.FunctionComponent<Props> = ({
 
   return (
     <menu
-      className='d-flex flex-column px-2 m-0 p-0'
+      className='chats-list d-flex flex-column px-2 m-0 p-0'
       style={{
         overflowY: 'auto',
         overflowX: 'hidden',
@@ -43,6 +45,7 @@ const ChatsList: React.FunctionComponent<Props> = ({
               contact={contact}
               currentUser={user}
               lastMessage={lastMessage}
+              setActive={setActive}
             />
           );
         })}

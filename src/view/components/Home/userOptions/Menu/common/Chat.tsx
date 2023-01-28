@@ -5,22 +5,22 @@ import { setCurrentChat } from '../../../../../../controller/slices';
 import { ContactData } from '../../../../../../model/types';
 
 interface Props {
-  contact:
-    | ContactData
-    | undefined;
+  contact: ContactData | undefined;
   currentUser: any;
   lastMessage: boolean;
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Chat: React.FunctionComponent<Props> = ({
   contact,
   currentUser,
   lastMessage,
+  setActive,
 }) => {
   const [profilePic, setProfilePic] = useState(contact?.profileImg || noPhoto);
-  const [name, setName] = useState<number | undefined>(contact?.cel);  
+  const [name, setName] = useState<number | undefined>(contact?.cel);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const nickname = currentUser?.contacts?.find(
     (e: any) => e.cel === contact?.cel
@@ -39,7 +39,10 @@ const Chat: React.FunctionComponent<Props> = ({
       <article
         className='menu-chat d-flex border-bottom py-2 ps-3 gap-3 m-0'
         style={{ maxHeight: 100, overflow: 'hidden' }}
-        onClick={() => dispatch(setCurrentChat(contact))}
+        onClick={() => {
+          dispatch(setCurrentChat(contact));
+          setActive((value) => !value);
+        }}
       >
         <img
           className='profile'

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActiveChats, getContacts } from '../../controller/handler';
 import { Navigate } from 'react-router-dom';
@@ -89,13 +89,15 @@ const Home: React.FunctionComponent = () => {
     };
   }, [activeChats, dispatch]);
 
+  const [active, setActive] = useState(true);
+
   if (!currentUser) {
     return <Navigate to='/' />;
   } else {
     return (
       <main className='d-flex flex-md-row flex-column p-0 m-0'>
-        <UserOptions />
-        <ChatOptions />
+        <UserOptions active={active} setActive={setActive}/>
+        <ChatOptions active={active} setActive={setActive}/>
       </main>
     );
   }

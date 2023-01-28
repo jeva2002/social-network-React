@@ -5,7 +5,12 @@ import ChatMenu from './CurrentChat/ChatMenu';
 import CurrentContact from './CurrentChat/CurrentContact';
 import MessagesList from './CurrentChat/MessagesList';
 
-const CurrentChat: React.FunctionComponent = () => {
+interface Props {
+  active: boolean;
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const CurrentChat: React.FunctionComponent<Props> = ({ active, setActive }) => {
   const activeChats = useSelector(
     (state: any) => state.activeChats.activeChats
   );
@@ -16,7 +21,7 @@ const CurrentChat: React.FunctionComponent = () => {
   const [currentChat, setCurrentChat] = useState<ContactData>(activeChats[0]);
 
   useEffect(() => {
-    if(activeChats[0]) setCurrentChat(activeChats[0]);
+    if (activeChats[0]) setCurrentChat(activeChats[0]);
   }, [activeChats]);
 
   useEffect(() => {
@@ -24,8 +29,8 @@ const CurrentChat: React.FunctionComponent = () => {
   }, [currentChatSelected]);
 
   return (
-    <section className='current-chat col-md-8 col-12 d-flex flex-column'>
-      <CurrentContact currentChat={currentChat} />
+    <section className={`${active ? 'hidden' : ''} current-chat col-md-8 col-12 d-flex flex-column`}>
+      <CurrentContact currentChat={currentChat} setActive={setActive} />
       <MessagesList currentChat={currentChat} />
       <ChatMenu chatId={currentChat?.chat?.id} />
     </section>

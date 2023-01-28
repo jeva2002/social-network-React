@@ -11,7 +11,8 @@ const selectView = (
   setFilter: React.Dispatch<React.SetStateAction<string>>,
   filter: string,
   contactsList: ContactData[],
-  activeChatsList: ContactData[]
+  activeChatsList: ContactData[],
+  setActive: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   switch (view) {
     case 'addContact':
@@ -20,7 +21,12 @@ const selectView = (
       return (
         <>
           <Filter setFilter={setFilter} />
-          <ChatsList filter={filter} list={contactsList} lastMessage={true} />
+          <ChatsList
+            setActive={setActive}
+            filter={filter}
+            list={contactsList}
+            lastMessage={true}
+          />
         </>
       );
     default:
@@ -28,6 +34,7 @@ const selectView = (
         <>
           <Filter setFilter={setFilter} />
           <ChatsList
+            setActive={setActive}
             filter={filter}
             list={activeChatsList}
             lastMessage={false}
@@ -37,7 +44,12 @@ const selectView = (
   }
 };
 
-const Menu: React.FunctionComponent = () => {
+interface Props {
+  active: boolean;
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Menu: React.FunctionComponent<Props> = ({ active, setActive }) => {
   const view = useSelector((state: any) => state.menuView.currentView);
   const contacts: ContactData[] = useSelector(
     (state: any) => state.contacts.contactData
@@ -49,9 +61,13 @@ const Menu: React.FunctionComponent = () => {
   const [filter, setFilter] = useState('');
 
   return (
-    <aside className={`menu-home container-fluid col-md-4 col-12 p-0 m-0`}>
+    <aside
+      className={`${
+        active ? '' : 'hidden'
+      } menu-home container-fluid col-md-4 col-12 p-0 m-0`}
+    >
       <Nav />
-      {selectView(view, setFilter, filter, contacts, activeChats)}
+      {selectView(view, setFilter, filter, contacts, activeChats, setActive)}
     </aside>
   );
 };

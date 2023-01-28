@@ -45,3 +45,9 @@ body {
     --bs-btn-hover-bg: #6aab78;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .hidden {
+    display: none !important;
+  }
+}

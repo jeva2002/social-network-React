@@ -18,7 +18,7 @@ export const sendMessage = async (
     const newMessage: Message = {
       message: message,
       date: new Date().toLocaleDateString('en-US', DateTime.DATE_SHORT),
-      hour: new Date().toLocaleDateString('en-US', DateTime.TIME_24_SIMPLE),
+      hour: new Date().toLocaleDateString('en-US', DateTime.TIME_SIMPLE).split(',')[1],
       sendBy: currentUserId,
       viewed: false,
     };
