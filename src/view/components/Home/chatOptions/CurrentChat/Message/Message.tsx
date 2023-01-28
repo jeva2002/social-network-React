@@ -1,37 +1,44 @@
-import { Message as IMessage } from '../../../../../model/types';
-import arrow from '../../../../../assets/icons/arrow-down.svg';
-import check from '../../../../../assets/icons/check.svg';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Message as IMessage } from '../../../../../../model/types';
+import arrow from '../../../../../../assets/icons/arrow-down.svg';
+import check from '../../../../../../assets/icons/check.svg';
+import Options from './Options';
 
 interface Props {
   message: IMessage;
+  handleDelete: (message: IMessage) => void
 }
 
-const Message: React.FunctionComponent<Props> = ({ message }) => {
+const Message: React.FunctionComponent<Props> = ({ message, handleDelete }) => {
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
   );
 
+  const [showOptions, setShowOptions] = useState(false);
+
+  const deleteMessage = () => handleDelete(message)
+
   return (
     <article
-    className={`col-md-6 col-9 p-2 px-4 my-3 mx-4 d-flex flex-column ${
-    currentUser.id !== message.sendBy
-      ? 'align-self-start contact-message'
-      : 'align-self-end user-message'
-    }`}
+      className={`message col-md-6 col-9 p-2 px-4 my-3 mx-4 d-flex flex-column ${
+        currentUser.id !== message.sendBy
+          ? 'align-self-start contact-message'
+          : 'align-self-end user-message'
+      }`}
     >
       <div className='d-flex justify-content-between position-relative'>
         <p className='col-11' style={{ fontSize: 18 }}>
           {message.message}
         </p>
         <img
+          className='click icon'
           src={arrow}
           alt='Mostrar opciones'
-          style={{
-            cursor: 'pointer',
-          }}
+          onClick={() => setShowOptions(value => !value)}
         />
       </div>
+      {showOptions ? <Options deleteMessage={deleteMessage} /> : null}
       <div className='align-self-end d-flex align-items-center'>
         <small>{`${message.hour}`}</small>
         <img
