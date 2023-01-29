@@ -1,21 +1,19 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CurrentUserData } from '../../../../../types';
 import noPhoto from '../../../../../assets/icons/no-photo.svg';
 import camera from '../../../../../assets/icons/camera.svg';
 import edit from '../../../../../assets/icons/edit-2.svg';
+import { getCurrentUser } from '../../../../../controller/features/currentUser';
 
 interface Props {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Profile: React.FunctionComponent<Props> = ({ setEdit }) => {
-  const currentUser: CurrentUserData = useSelector(
-    (state: any) => state.currentUser.currentUser
-  );
+  const currentUser = useSelector(getCurrentUser);
 
   const [profilePic, setProfilePic] = useState(
-    currentUser.profileImg ?? noPhoto
+    currentUser?.profileImg ?? noPhoto
   );
   const [mouseOver, setMouseOver] = useState(false);
 
@@ -70,14 +68,14 @@ const Profile: React.FunctionComponent<Props> = ({ setEdit }) => {
             onClick={() => setEdit(true)}
           />
         </div>
-        <h2>{currentUser.firstname + ' ' + currentUser.lastname}</h2>
-        <h3>{currentUser.cel}</h3>
+        <h2>{currentUser?.firstname + ' ' + currentUser?.lastname}</h2>
+        <h3>{currentUser?.cel}</h3>
       </div>
       <div className='col-12 '>
         <h4 className=' col-12 border-bottom border-success pb-2 mb-4'>
           Descripción
         </h4>
-        <p style={{ fontSize: 20 }}>{currentUser.description}</p>
+        <p style={{ fontSize: 20 }}>{currentUser?.description}</p>
       </div>
     </section>
   );

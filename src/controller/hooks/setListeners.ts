@@ -5,7 +5,8 @@ import { collections } from '../../model/db/config';
 import { listenDoc } from '../../model/db/services';
 import { formatCurrentUser } from '../../model/validations';
 import { ContactData, CurrentUserData } from '../../types';
-import { modifyChat, setCurrentUser, getActiveChats } from '../features';
+import { setCurrentUser, getActiveChats } from '../features';
+import { updateChat } from '../features/chats';
 
 export const useListenCurrentUser = (
   currentUser: CurrentUserData | undefined
@@ -36,8 +37,8 @@ export const useListenActiveChats = () => {
   useEffect(() => {
     const listenersList: Unsubscribe[] = [];
 
-    const listenActiveChats = (doc: DocumentData | undefined) => {
-      dispatch(modifyChat(doc));
+    const listenActiveChats = async (doc: DocumentData | undefined) => {
+      dispatch(updateChat({ chat: doc, id: doc?.id }));
     };
 
     if (activeChats) {

@@ -2,9 +2,7 @@ import { Form } from "formik";
 import TextField from "../common/TextField";
 import Button from "react-bootstrap/Button";
 
-interface IFormProps {}
-
-const LoginForm: React.FunctionComponent<IFormProps> = (props) => {
+const LoginForm: React.FunctionComponent = () => {
   return (
     <Form
       className='col-md-4 col-11 px-md-5 px-4 py-5 d-flex flex-column'

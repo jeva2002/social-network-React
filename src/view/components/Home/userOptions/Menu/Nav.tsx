@@ -4,25 +4,28 @@ import noPhoto from '../../../../../assets/icons/no-photo.svg';
 import contactsList from '../../../../../assets/icons/contacts-list.svg';
 import chats from '../../../../../assets/icons/chats.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCurrentUser, setMenuView, setUserOptions } from '../../../../../controller/features';
+import {
+  clearCurrentUser,
+  setMenuView,
+  setUserOptions,
+} from '../../../../../controller/features';
 import { useState } from 'react';
+import { getCurrentUser } from '../../../../../controller/features/currentUser';
 
 interface Props {
   setView: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Nav: React.FunctionComponent<Props> = ({ setView }) => {
-  const { profileImg } = useSelector(
-    (state: any) => state.currentUser.currentUser
-  );
+  const currentUser = useSelector(getCurrentUser);
   const dispatch = useDispatch();
 
-  const [profilePic, setProfilePic] = useState(profileImg);
+  const [profilePic, setProfilePic] = useState(
+    currentUser?.profileImg ?? noPhoto
+  );
 
   return (
-    <section
-      className='gray px-3 py-2 d-flex justify-content-between gap-1'
-    >
+    <section className='gray px-3 py-2 d-flex justify-content-between gap-1'>
       <img
         className='profile'
         src={profilePic}

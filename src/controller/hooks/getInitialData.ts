@@ -9,7 +9,6 @@ export const useSetContacts = (currentUser: CurrentUserData | undefined) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('render');
     if (currentUser) {
       getContacts(
         currentUser.contacts.map((contact: Contact) => contact.cel)

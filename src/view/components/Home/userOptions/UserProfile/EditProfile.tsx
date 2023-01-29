@@ -5,6 +5,7 @@ import { updateCurrentUser } from '../../../../../controller/handlers';
 import { CurrentUserData } from '../../../../../types';
 import { VALIDATE_UPDATE_CURRENT_USER } from '../../../../../model/validations';
 import TextField from '../../../common/TextField';
+import { getCurrentUser } from '../../../../../controller/features/currentUser';
 
 interface Props {
   edit: boolean;
@@ -19,15 +20,13 @@ export interface ValuesUpdateUser {
 }
 
 const EditProfile: React.FunctionComponent<Props> = ({ edit, setEdit }) => {
-  const currentUser: CurrentUserData = useSelector(
-    (state: any) => state.currentUser.currentUser
-  );
+  const currentUser = useSelector(getCurrentUser);
 
   const INITIAL_VALUES: ValuesUpdateUser = {
-    profileImg: currentUser.profileImg,
-    firstname: currentUser.firstname,
-    lastname: currentUser.lastname,
-    description: currentUser.description,
+    profileImg: currentUser?.profileImg ?? '',
+    firstname: currentUser?.firstname ?? '',
+    lastname: currentUser?.lastname ?? '',
+    description: currentUser?.description ?? '',
   };
 
   return (
@@ -35,7 +34,7 @@ const EditProfile: React.FunctionComponent<Props> = ({ edit, setEdit }) => {
       initialValues={INITIAL_VALUES}
       validationSchema={VALIDATE_UPDATE_CURRENT_USER}
       onSubmit={(values) => {
-        updateCurrentUser(currentUser.id, values)
+        updateCurrentUser(currentUser?.id, values)
       }}
     >
       <Form className='p-md-5 p-2'>

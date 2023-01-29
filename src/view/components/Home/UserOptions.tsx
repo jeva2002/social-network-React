@@ -13,7 +13,7 @@ const setUserOptionsView = (userOptions: string) => {
 };
 
 const UserOptions: React.FunctionComponent = () => {
-  const userOptions: string = useSelector(getUserOptions);
+  const userOptions = useSelector(getUserOptions);
 
   return <>{setUserOptionsView(userOptions)}</>;
 };

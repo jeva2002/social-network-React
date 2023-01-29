@@ -7,11 +7,11 @@ import { UpdateUser } from '../../types';
 import { ValuesUpdateUser } from '../../view/components/Home/userOptions/UserProfile/EditProfile';
 
 export const updateCurrentUser = async (
-  id: string,
+  id: string | undefined,
   updateData: ValuesUpdateUser
 ) => {
   try {
-    const user = await getOne(collections.users, id);
+    const user = await getOne(collections.users, id ?? '');
     if (user) {
       const updatedUser: UpdateUser = {
         cel: user.cel,
@@ -22,11 +22,13 @@ export const updateCurrentUser = async (
         firstname: updateData.firstname,
         lastname: updateData.lastname,
         isConnected: user.isConnected ?? false,
-        lastTime: user.lastTime ?? new Date().toLocaleDateString('en-US', DateTime.DATE_SHORT),
+        lastTime:
+          user.lastTime ??
+          new Date().toLocaleDateString('en-US', DateTime.DATE_SHORT),
         password: user.password,
         profileImg: updateData.profileImg,
       };
-      await update(id, collections.users, updatedUser);
+      await update(id ?? '', collections.users, updatedUser);
       Swal.fire('Usuario actualizado corectamente');
     }
   } catch (error: Error | FirebaseError | unknown) {

@@ -7,20 +7,19 @@ import { addContactHandler } from '../../../../../controller/handlers';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMenuView } from '../../../../../controller/features';
 import { getOne } from '../../../../../model/db/services';
+import { getCurrentUser } from '../../../../../controller/features/currentUser';
 
 const INITIAL_VALUES: NewContact = {
   contact: '',
   cel: '',
 };
 
-const AddContacts: React.FunctionComponent = (props) => {
-  const currentUser = useSelector(
-    (state: any) => state.currentUser.currentUser
-  );
+const AddContacts: React.FunctionComponent = () => {
+  const currentUser = useSelector(getCurrentUser);
   const dispatch = useDispatch();
 
   const updateCurrentUser = async () => {
-    await getOne('users', currentUser.id);
+    await getOne('users', currentUser?.id ?? '');
   };
 
   return (

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getCurrentUser } from '../../../../../../controller/features/currentUser';
 import { Contact, ContactData } from '../../../../../../types';
@@ -29,7 +28,9 @@ const ChatsList: React.FunctionComponent<Props> = ({
           const nickname = currentUser?.contacts?.find(
             (e: Contact) => e.cel === contact?.cel
           );
-          return `${nickname?.contact !== '' ? nickname?.contact : nickname?.cel}`
+          return `${
+            nickname?.contact !== '' ? nickname?.contact : nickname?.cel
+          }`
             .toLowerCase()
             .includes(filter);
         })

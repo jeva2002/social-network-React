@@ -10,9 +10,7 @@ const Filter: React.FunctionComponent<Props> = ({ setFilter }) => {
   const [input, setInput] = useState('');
 
   return (
-    <div
-      className='gray d-flex m-0 p-4 position-relative align-items-center'
-    >
+    <div className='gray d-flex m-0 p-4 position-relative align-items-center'>
       <span className='position-absolute ms-2'>
         <img src={search} alt='Buscar' />
       </span>
