@@ -1,19 +1,21 @@
-import { ContactData } from '../../../../../model/types';
+import { ContactData } from '../../../../../types';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import noPhoto from '../../../../../assets/icons/no-photo.svg';
 import search from '../../../../../assets/icons/search.svg';
 import arrow from '../../../../../assets/icons/arrow-left.svg';
+import { setActive } from '../../../../../controller/features';
 
 interface Props {
   currentChat: ContactData | undefined;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CurrentContact: React.FunctionComponent<Props> = ({ currentChat, setActive }) => {
+const CurrentContact: React.FunctionComponent<Props> = ({ currentChat }) => {
   const currentUser = useSelector(
     (state: any) => state.currentUser.currentUser
   );
+
+  const dispatch = useDispatch();
 
   const [name, setName] = useState<number | undefined>(currentChat?.cel);
   const [profilePic, setProfilePic] = useState(
@@ -39,7 +41,7 @@ const CurrentContact: React.FunctionComponent<Props> = ({ currentChat, setActive
         className='click icon col-2 d-md-none'
         src={arrow}
         alt='Volver'
-        onClick={() => setActive((value) => !value)}
+        onClick={() => dispatch(setActive())}
       />
       <div className='d-flex col-8 gap-3'>
         <img

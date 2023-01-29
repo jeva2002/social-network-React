@@ -32,5 +32,6 @@ export const getWithQuery = async (
 
 export const getOne = async (collection: string, id: string) => {
   const data = await getDoc(doc(database, collection, id));
-  return data.data();
+  const response: any = { ...data.data(), id: data.id };
+  return response;
 };

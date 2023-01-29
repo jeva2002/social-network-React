@@ -4,11 +4,11 @@ import clip from '../../../../../assets/icons/paperclip.svg';
 import mic from '../../../../../assets/icons/mic.svg';
 import send from '../../../../../assets/icons/send.svg';
 import FormControl from 'react-bootstrap/FormControl';
-import { sendMessage } from '../../../../../controller/handler';
+import { sendMessage } from '../../../../../controller/handlers';
 import { useSelector } from 'react-redux';
 
 interface Props {
-  chatId: string;
+  chatId: string | undefined;
 }
 
 const ChatMenu: React.FunctionComponent<Props> = ({ chatId }) => {
@@ -26,7 +26,7 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId }) => {
         className='col-9 position-relative'
         onSubmit={(e) => {
           e.preventDefault();
-          sendMessage(chatId, currentUser.id, input);
+          if (chatId) sendMessage(chatId, currentUser.id, input);
         }}
       >
         <FormControl
@@ -44,7 +44,9 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId }) => {
           className='send icon click'
           src={send}
           alt='Enviar'
-          onClick={() => sendMessage(chatId, currentUser.id, input)}
+          onClick={() => {
+            if (chatId) sendMessage(chatId, currentUser.id, input);
+          }}
         />
       </form>
       <img className='icon click col-1' src={mic} alt='Audio' />

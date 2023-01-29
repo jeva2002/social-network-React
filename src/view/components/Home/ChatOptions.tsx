@@ -1,25 +1,18 @@
 import { useSelector } from 'react-redux';
+import { getChatOptions } from '../../../controller/features';
 import CurrentChat from './chatOptions/CurrentChat';
 
-interface Props {
-  active: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const setChatOptionsView = (chatOptions: string, props: Props) => {
+const setChatOptionsView = (chatOptions: string) => {
   switch (chatOptions) {
     default:
-      return <CurrentChat active={props.active} setActive={props.setActive} />;
+      return <CurrentChat />;
   }
 };
 
+const ChatOptions: React.FunctionComponent = () => {
+  const chatOptions = useSelector(getChatOptions);
 
-const ChatOptions: React.FunctionComponent<Props> = (props) => {
-  const chatOptions: string = useSelector(
-    (state: any) => state.globalView.chatOptions
-  );
-
-  return setChatOptionsView(chatOptions, props);
+  return setChatOptionsView(chatOptions);
 };
 
 export default ChatOptions;

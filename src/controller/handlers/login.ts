@@ -1,8 +1,8 @@
 import { FirebaseError } from 'firebase/app';
 import Swal from 'sweetalert2';
 import { queryOperators, usersCollection } from '../../model/db/config';
-import { authenticateUser, getWithQuery } from '../../model/db/crud';
-import { Auth, CurrentUserData } from '../../model/types';
+import { authenticateUser, getWithQuery } from '../../model/db/services';
+import { Auth, CurrentUserData } from '../../types';
 
 const handleLogin = async (values: Auth) => {
   try {

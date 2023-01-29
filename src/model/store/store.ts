@@ -1,20 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
-  activeChatsReducer,
-  contactsReducer,
-  currentChatReducer,
+  chatsReducer,
   currentUserReducer,
   globalViewReducer,
   menuViewReducer,
-} from '../../controller/slices';
+} from '../../controller/features';
 
 export const store = configureStore({
   reducer: {
     currentUser: currentUserReducer,
     menuView: menuViewReducer,
-    contacts: contactsReducer,
-    activeChats: activeChatsReducer,
+    chats: chatsReducer,
     globalView: globalViewReducer,
-    currentChat: currentChatReducer,
   },
 });

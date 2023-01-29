@@ -1,12 +1,12 @@
 import { Formik, Form } from 'formik';
 import TextField from '../../../common/TextField';
-import { NewContact } from '../../../../../model/types';
+import { NewContact } from '../../../../../types';
 import { VALIDATE_ADD_CONTACT } from '../../../../../model/validations';
 import Button from 'react-bootstrap/Button';
-import { addContactHandler } from '../../../../../controller/handler';
+import { addContactHandler } from '../../../../../controller/handlers';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMenuView } from '../../../../../controller/slices';
-import { getOne } from '../../../../../model/db/crud';
+import { setMenuView } from '../../../../../controller/features';
+import { getOne } from '../../../../../model/db/services';
 
 const INITIAL_VALUES: NewContact = {
   contact: '',

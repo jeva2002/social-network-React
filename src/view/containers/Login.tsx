@@ -2,10 +2,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import LoginForm from '../components/Login/LoginForm';
 import { Formik } from 'formik';
 import { VALIDATE_LOGIN } from '../../model/validations';
-import { Auth } from '../../model/types';
-import { handleLogin } from '../../controller/handler';
+import { Auth } from '../../types';
+import { handleLogin } from '../../controller/handlers';
 import { useDispatch } from 'react-redux';
-import { setCurrentUser, setUserOptions } from '../../controller/slices';
+import { setCurrentUser, setUserOptions } from '../../controller/features';
 
 const INITIAL_VALUES: Auth = {
   email: '',

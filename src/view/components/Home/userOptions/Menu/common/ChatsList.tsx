@@ -1,25 +1,20 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Contact, ContactData } from '../../../../../../model/types';
+import { getCurrentUser } from '../../../../../../controller/features/currentUser';
+import { Contact, ContactData } from '../../../../../../types';
 import Chat from './Chat';
 
 interface Props {
   filter: string;
-  list: ContactData[];
+  list: (ContactData | undefined)[];
   lastMessage: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const ChatsList: React.FunctionComponent<Props> = ({
   filter,
   list,
   lastMessage,
-  setActive,
 }) => {
-  const currentUser = useSelector(
-    (state: any) => state.currentUser.currentUser
-  );
-
-  const [user, setUser] = useState(currentUser);
+  const currentUser = useSelector(getCurrentUser);
 
   return (
     <menu
@@ -31,10 +26,10 @@ const ChatsList: React.FunctionComponent<Props> = ({
     >
       {list
         .filter((contact) => {
-          const nickname = user?.contacts?.find(
+          const nickname = currentUser?.contacts?.find(
             (e: Contact) => e.cel === contact?.cel
           );
-          return `${nickname.contact !== '' ? nickname.contact : nickname.cel}`
+          return `${nickname?.contact !== '' ? nickname?.contact : nickname?.cel}`
             .toLowerCase()
             .includes(filter);
         })
@@ -43,9 +38,8 @@ const ChatsList: React.FunctionComponent<Props> = ({
             <Chat
               key={contact?.id}
               contact={contact}
-              currentUser={user}
+              currentUser={currentUser}
               lastMessage={lastMessage}
-              setActive={setActive}
             />
           );
         })}

@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import noPhoto from '../../../../../../assets/icons/no-photo.svg';
-import { setCurrentChat } from '../../../../../../controller/slices';
-import { ContactData } from '../../../../../../model/types';
+import { setActive } from '../../../../../../controller/features';
+import { setCurrentChat } from '../../../../../../controller/features/chats';
+import { ContactData } from '../../../../../../types';
 
 interface Props {
   contact: ContactData | undefined;
   currentUser: any;
   lastMessage: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Chat: React.FunctionComponent<Props> = ({
   contact,
   currentUser,
   lastMessage,
-  setActive,
 }) => {
   const [profilePic, setProfilePic] = useState(contact?.profileImg || noPhoto);
   const [name, setName] = useState<number | undefined>(contact?.cel);
@@ -41,7 +40,7 @@ const Chat: React.FunctionComponent<Props> = ({
         style={{ maxHeight: 100, overflow: 'hidden' }}
         onClick={() => {
           dispatch(setCurrentChat(contact));
-          setActive((value) => !value);
+          dispatch(setActive());
         }}
       >
         <img

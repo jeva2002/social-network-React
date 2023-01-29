@@ -1,5 +1,5 @@
 import { DocumentData } from "firebase/firestore";
-import { CurrentUserData } from "../types";
+import { CurrentUserData } from "../../types";
 
 export const formatCurrentUser = (doc: DocumentData | undefined, id: string) => {
   if (doc) {

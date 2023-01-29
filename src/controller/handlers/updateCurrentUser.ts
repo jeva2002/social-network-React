@@ -2,8 +2,8 @@ import { FirebaseError } from 'firebase/app';
 import { DateTime } from 'luxon';
 import Swal from 'sweetalert2';
 import { collections } from '../../model/db/config';
-import { getOne, update } from '../../model/db/crud';
-import { UpdateUser } from '../../model/types';
+import { getOne, update } from '../../model/db/services';
+import { UpdateUser } from '../../types';
 import { ValuesUpdateUser } from '../../view/components/Home/userOptions/UserProfile/EditProfile';
 
 export const updateCurrentUser = async (

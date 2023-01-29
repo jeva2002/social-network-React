@@ -1,11 +1,12 @@
-import { createAccount, createDoc } from '../../model/db/crud';
-import { NewUser } from '../../model/types';
+import { createAccount, createDoc } from '../../model/db/services';
+import { NewUser } from '../../types';
 import { DateTime } from 'luxon';
+import { usersCollection } from '../../model/db/config';
 
 const handleRegister = async (user: NewUser) => {
   try {
     const credential = await createAccount(user.email, user.password);
-    const document = await createDoc({
+    const document = await createDoc(usersCollection, {
       ...user,
       chats: [],
       contacts: [],

@@ -1,5 +1,5 @@
-import { deleteMessage } from '../../../../../controller/handler';
-import { ContactData, Message as IMessage } from '../../../../../model/types';
+import { deleteMessage } from '../../../../../controller/handlers';
+import { ContactData, Message as IMessage } from '../../../../../types';
 import Message from './Message/Message';
 
 interface Props {

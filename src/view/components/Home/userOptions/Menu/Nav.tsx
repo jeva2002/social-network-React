@@ -4,12 +4,14 @@ import noPhoto from '../../../../../assets/icons/no-photo.svg';
 import contactsList from '../../../../../assets/icons/contacts-list.svg';
 import chats from '../../../../../assets/icons/chats.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCurrentUser, setMenuView, setUserOptions } from '../../../../../controller/slices';
+import { clearCurrentUser, setMenuView, setUserOptions } from '../../../../../controller/features';
 import { useState } from 'react';
 
-interface Props {}
+interface Props {
+  setView: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const Nav: React.FunctionComponent<Props> = (props) => {
+const Nav: React.FunctionComponent<Props> = ({ setView }) => {
   const { profileImg } = useSelector(
     (state: any) => state.currentUser.currentUser
   );
@@ -35,19 +37,19 @@ const Nav: React.FunctionComponent<Props> = (props) => {
         src={chats}
         alt='Chats'
         style={{ width: 35, cursor: 'pointer' }}
-        onClick={() => dispatch(setMenuView('chatHistory'))}
+        onClick={() => setView('chatHistory')}
       />
       <img
         src={contactsList}
         alt='Lista de contactos'
         style={{ width: 35, cursor: 'pointer' }}
-        onClick={() => dispatch(setMenuView('contactsList'))}
+        onClick={() => setView('contactsList')}
       />
       <img
         src={addContact}
         alt='Agregar contacto'
         style={{ width: 35, cursor: 'pointer' }}
-        onClick={() => dispatch(setMenuView('addContact'))}
+        onClick={() => setView('addContact')}
       />
       <img
         src={close}

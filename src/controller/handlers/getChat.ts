@@ -1,10 +1,11 @@
 import {
   chatsCollection,
+  collections,
   queryOperators,
   usersCollection,
 } from '../../model/db/config';
-import { getOne, getWithQuery } from '../../model/db/crud';
-import { ContactData } from '../../model/types';
+import { getOne, getWithQuery } from '../../model/db/services';
+import { ContactData } from '../../types';
 
 const getContact = async (cel: number) => {
   const contact: any = await getWithQuery(
@@ -24,7 +25,7 @@ const getContact = async (cel: number) => {
 };
 
 export const getContacts = (contacts: number[]) => {
-  const contactsList = contacts.map(async (e) => await getContact(e))
+  const contactsList = contacts.map(async (e) => await getContact(e));
   const result = Promise.all(contactsList).then((contacts) => {
     return contacts.map((contact, index) => {
       if (contact) {
@@ -40,7 +41,7 @@ export const getContacts = (contacts: number[]) => {
     });
   });
   return result;
-}
+};
 
 export const getActiveChats = async (currentUserId: string) => {
   const chats: any = await getWithQuery(
@@ -49,18 +50,21 @@ export const getActiveChats = async (currentUserId: string) => {
     queryOperators.arrayContains,
     currentUserId
   );
-  const contactsList: any[] = [];
-  chats
-    .map((e: any) => e.participants.filter((e: any) => e !== currentUserId))
-    .forEach((e: any) => contactsList.push(e[0]));
-  const promisesList = contactsList.map(
-    async (e: any) => await getOne('users', e)
+  const contactsIdList = [
+    ...chats.map((e: any) =>
+      e.participants.filter((e: any) => e !== currentUserId)
+    ),
+  ].flat();
+
+  const contactsList = contactsIdList.map(
+    async (e) => await getOne(collections.users, e)
   );
-  return Promise.all(promisesList).then(async (contacts) => {
+
+  const result = Promise.all(contactsList).then((contacts) => {
     return contacts.map((contact, index) => {
       if (contact) {
         const formatedContact: ContactData = {
-          id: contactsList[index],
+          id: contact?.id,
           cel: contact?.cel,
           description: contact?.description,
           profileImg: contact?.profileImg,
@@ -70,4 +74,5 @@ export const getActiveChats = async (currentUserId: string) => {
       } else return undefined;
     });
   });
+  return result;
 };

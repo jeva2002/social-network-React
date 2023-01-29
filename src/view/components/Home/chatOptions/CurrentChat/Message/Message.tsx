@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Message as IMessage } from '../../../../../../model/types';
+import { Message as IMessage } from '../../../../../../types';
 import arrow from '../../../../../../assets/icons/arrow-down.svg';
 import check from '../../../../../../assets/icons/check.svg';
 import Options from './Options';

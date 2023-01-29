@@ -10,7 +10,7 @@ export interface NewContact {
 
 export interface Contact {
   contact: string;
-  cel: number | string;
+  cel: number;
 }
 
 export interface UpdateUser {

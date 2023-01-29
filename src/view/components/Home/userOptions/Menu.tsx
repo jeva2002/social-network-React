@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ContactData } from '../../../../model/types';
+import { getIsActive } from '../../../../controller/features';
+import {
+  getActiveChats,
+  getContacts,
+} from '../../../../controller/features/chats';
+import { ContactData } from '../../../../types';
 import AddContacts from './Menu/AddContacts';
 import ChatsList from './Menu/common/ChatsList';
 import Filter from './Menu/common/Filter';
@@ -10,9 +15,8 @@ const selectView = (
   view: string,
   setFilter: React.Dispatch<React.SetStateAction<string>>,
   filter: string,
-  contactsList: ContactData[],
-  activeChatsList: ContactData[],
-  setActive: React.Dispatch<React.SetStateAction<boolean>>
+  contactsList: (ContactData | undefined)[],
+  activeChatsList: (ContactData | undefined)[]
 ) => {
   switch (view) {
     case 'addContact':
@@ -21,12 +25,7 @@ const selectView = (
       return (
         <>
           <Filter setFilter={setFilter} />
-          <ChatsList
-            setActive={setActive}
-            filter={filter}
-            list={contactsList}
-            lastMessage={true}
-          />
+          <ChatsList filter={filter} list={contactsList} lastMessage={true} />
         </>
       );
     default:
@@ -34,7 +33,6 @@ const selectView = (
         <>
           <Filter setFilter={setFilter} />
           <ChatsList
-            setActive={setActive}
             filter={filter}
             list={activeChatsList}
             lastMessage={false}
@@ -44,30 +42,22 @@ const selectView = (
   }
 };
 
-interface Props {
-  active: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
+const Menu: React.FunctionComponent = () => {
+  const isActive = useSelector(getIsActive);
+  const contacts = useSelector(getContacts);
+  const activeChats = useSelector(getActiveChats);
 
-const Menu: React.FunctionComponent<Props> = ({ active, setActive }) => {
-  const view = useSelector((state: any) => state.menuView.currentView);
-  const contacts: ContactData[] = useSelector(
-    (state: any) => state.contacts.contactData
-  );
-  const activeChats: ContactData[] = useSelector(
-    (state: any) => state.activeChats.activeChats
-  );
-
+  const [view, setView] = useState('activeChats');
   const [filter, setFilter] = useState('');
 
   return (
     <aside
       className={`${
-        active ? '' : 'hidden'
+        isActive ? '' : 'hidden'
       } menu-home container-fluid col-md-4 col-12 p-0 m-0`}
     >
-      <Nav />
-      {selectView(view, setFilter, filter, contacts, activeChats, setActive)}
+      <Nav setView={setView} />
+      {selectView(view, setFilter, filter, contacts, activeChats)}
     </aside>
   );
 };

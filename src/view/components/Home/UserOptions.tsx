@@ -1,27 +1,21 @@
 import { useSelector } from 'react-redux';
+import { getUserOptions } from '../../../controller/features';
 import CurrentUserProfile from './userOptions/CurrentUserProfile';
 import Menu from './userOptions/Menu';
 
-interface Props {
-  active: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const setUserOptionsView = (userOptions: string, props: Props) => {
+const setUserOptionsView = (userOptions: string) => {
   switch (userOptions) {
     case 'profile':
       return <CurrentUserProfile />;
     default:
-      return <Menu active={props.active} setActive={props.setActive} />;
+      return <Menu />;
   }
 };
 
-const UserOptions: React.FunctionComponent<Props> = (props) => {
-  const userOptions: string = useSelector(
-    (state: any) => state.globalView.userOptions
-  );
+const UserOptions: React.FunctionComponent = () => {
+  const userOptions: string = useSelector(getUserOptions);
 
-  return <>{setUserOptionsView(userOptions, props)}</>;
+  return <>{setUserOptionsView(userOptions)}</>;
 };
 
 export default UserOptions;
