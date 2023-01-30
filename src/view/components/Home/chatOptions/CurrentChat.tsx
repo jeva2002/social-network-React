@@ -12,25 +12,15 @@ const CurrentChat: React.FunctionComponent = () => {
   const currentChatSelected = useSelector(getCurrentChat);
   const isActive = useSelector(getIsActive);
 
-  const [currentChat, setCurrentChat] = useState<ContactData>();
-
-  useEffect(() => {
-    if (activeChats[0]) setCurrentChat(activeChats[0]);
-  }, [activeChats]);
-
-  useEffect(() => {
-    setCurrentChat(currentChatSelected);
-  }, [currentChatSelected]);
-
   return (
     <section
       className={`${
         isActive ? 'hidden' : ''
       } current-chat col-md-8 col-12 d-flex flex-column`}
     >
-      <CurrentContact currentChat={currentChat} />
-      <MessagesList currentChat={currentChat} />
-      <ChatMenu chatId={currentChat?.chat?.id} />
+      <CurrentContact currentChat={currentChatSelected} />
+      <MessagesList currentChat={currentChatSelected} />
+      <ChatMenu chatId={currentChatSelected?.chat?.id} />
     </section>
   );
 };

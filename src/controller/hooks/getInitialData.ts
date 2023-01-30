@@ -3,7 +3,7 @@ import { Contact, ContactData, CurrentUserData } from '../../types';
 import { getContacts, getActiveChats } from '../handlers';
 import { useDispatch } from 'react-redux';
 import { setActiveChats } from '../features';
-import { setContacts } from '../features/chats';
+import { setContacts, setCurrentChat } from '../features/chats';
 
 export const useSetContacts = (currentUser: CurrentUserData | undefined) => {
   const dispatch = useDispatch();
@@ -27,8 +27,12 @@ export const useSetActiveChats = (currentUser: CurrentUserData | undefined) => {
       getActiveChats(currentUser.id).then(
         (res: (ContactData | undefined)[]) => {
           dispatch(setActiveChats(res));
+          if (res.length > 0) dispatch(setCurrentChat(res[0]));
         }
       );
     }
+    return () => {
+      dispatch(setCurrentChat(undefined));
+    };
   }, []);
 };

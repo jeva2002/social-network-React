@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Chat, ContactData } from '../../types';
+import { ContactData } from '../../types';
 
 interface InitialState {
   contacts: (ContactData | undefined)[];
@@ -29,7 +29,7 @@ const chatsSlice = createSlice({
     ) => {
       state.activeChats = action.payload;
     },
-    setCurrentChat: (state, action: PayloadAction<ContactData>) => {
+    setCurrentChat: (state, action: PayloadAction<ContactData | undefined>) => {
       state.currentChat = action.payload;
     },
     updateChat: (state, action: PayloadAction<{ chat: any; id: any }>) => {
@@ -39,6 +39,9 @@ const chatsSlice = createSlice({
       const chatInContext =
         state.activeChats[state.activeChats.indexOf(targetChat)];
       if (chatInContext) chatInContext.chat = action.payload.chat;
+    },
+    updateCurrentChat: (state, action: PayloadAction<{ chat: any }>) => {
+      if (state.currentChat) state.currentChat.chat = action.payload.chat;
     },
   },
 });
@@ -54,7 +57,12 @@ export const getCurrentChat = (state: {
   chats: { currentChat: ContactData | undefined };
 }) => state.chats.currentChat;
 
-export const { setActiveChats, setContacts, setCurrentChat, updateChat } =
-  chatsSlice.actions;
+export const {
+  setActiveChats,
+  setContacts,
+  setCurrentChat,
+  updateChat,
+  updateCurrentChat,
+} = chatsSlice.actions;
 
 export default chatsSlice.reducer;

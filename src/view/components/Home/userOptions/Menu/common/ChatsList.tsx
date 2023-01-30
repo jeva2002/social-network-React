@@ -35,14 +35,16 @@ const ChatsList: React.FunctionComponent<Props> = ({
             .includes(filter);
         })
         .map((contact) => {
-          return (
-            <Chat
-              key={contact?.id}
-              contact={contact}
-              currentUser={currentUser}
-              lastMessage={lastMessage}
-            />
-          );
+          if(contact){
+            return (
+              <Chat
+                key={contact?.id}
+                contact={contact}
+                currentUser={currentUser}
+                lastMessage={lastMessage}
+              />
+            )
+          } else return <div> Algo falló</div>
         })}
     </menu>
   );
