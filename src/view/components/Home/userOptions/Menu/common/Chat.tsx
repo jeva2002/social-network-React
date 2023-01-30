@@ -26,11 +26,11 @@ const Chat: React.FunctionComponent<Props> = ({
   );
 
   useEffect(() => {
-    if (nickname?.contact !== '') setName(nickname.contact);
+    if (nickname?.contact !== '') setName(nickname?.contact);
   }, [nickname?.contact]);
 
   useEffect(() => {
-    if (nickname?.contact !== '') setName(nickname.contact);
+    if (nickname?.contact !== '') setName(nickname?.contact);
   }, [nickname?.contact]);
 
   if (contact) {
@@ -51,7 +51,7 @@ const Chat: React.FunctionComponent<Props> = ({
         />
         <div className='d-flex flex-column justify-content-center gap-0'>
           <h3 className='p-0 m-0' style={{ fontSize: 18 }}>
-            {name}
+            {name ? name : null}
           </h3>
           {!lastMessage ? (
             <small

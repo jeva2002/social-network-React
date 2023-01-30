@@ -7,6 +7,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import { createNewChat, sendMessage } from '../../../../../controller/handlers';
 import { useSelector } from 'react-redux';
 import { getCurrentUser } from '../../../../../controller/features/currentUser';
+import Swal from 'sweetalert2';
 
 interface Props {
   chatId: string | undefined;
@@ -27,8 +28,10 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId, contactId }) => {
         onSubmit={(e) => {
           e.preventDefault();
           if (chatId) sendMessage(chatId, currentUser?.id, input);
-          else {
+          else if (contactId) {
             createNewChat(input, currentUser?.id ?? '', contactId ?? '');
+          } else {
+            Swal.fire('Se necesita un contacto');
           }
         }}
       >

@@ -30,7 +30,27 @@
       margin-top: -13px;
       margin-left: -13px;
     }
+  }
 
+  .contact-message {
+    background-color: #fefefe;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 30%;
+      width: 0;
+      height: 0;
+      border: 13px solid transparent;
+      border-right-color: #fefefe;
+      border-left: 0;
+      margin-top: -13px;
+      margin-left: -13px;
+    }
+  }
+
+  .user-message {
+    background-color: #b1e4bc;
     &::after {
       content: '';
       position: absolute;
@@ -44,14 +64,6 @@
       margin-top: -13px;
       margin-right: -13px;
     }
-  }
-
-  .contact-message {
-    background-color: #fefefe;
-  }
-
-  .user-message {
-    background-color: #b1e4bc;
   }
 
   .msg-options {

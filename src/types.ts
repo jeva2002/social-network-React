@@ -37,7 +37,7 @@ export interface NewUser {
   lastname: string;
   email: string;
   cel: string | number;
-  password: string;
+  password?: string;
   profileImg?: string;
   description?: string;
   isConnected?: boolean;

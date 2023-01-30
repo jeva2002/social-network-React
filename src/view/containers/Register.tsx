@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import { useNavigate } from 'react-router-dom';
 import RegisterForm from '../components/Register/RegisterForm';
 import { handleRegister } from '../../controller/handlers';
 import { VALIDATE_REGISTER } from '../../model/validations';
@@ -16,13 +15,14 @@ const INITIAL_VALUES: NewUser = {
 };
 
 const Register: React.FunctionComponent = (props) => {
-  const navigate = useNavigate();
-
   return (
     <Formik
       initialValues={INITIAL_VALUES}
       validationSchema={VALIDATE_REGISTER}
-      onSubmit={(values) => handleRegister(values)}
+      onSubmit={async (values, actions) => {
+        await handleRegister(values);
+        actions.resetForm();
+      }}
     >
       <main
         className='d-flex align-items-center justify-content-center'
