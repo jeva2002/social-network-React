@@ -17,7 +17,7 @@ const Chat: React.FunctionComponent<Props> = ({
   lastMessage,
 }) => {
   const [profilePic, setProfilePic] = useState(contact?.profileImg || noPhoto);
-  const [name, setName] = useState<number | undefined>(contact?.cel);
+  const [name, setName] = useState<number | string | undefined>(contact?.cel);
 
   const dispatch = useDispatch();
 
@@ -27,11 +27,8 @@ const Chat: React.FunctionComponent<Props> = ({
 
   useEffect(() => {
     if (nickname?.contact !== '') setName(nickname?.contact);
-  }, [nickname?.contact]);
-
-  useEffect(() => {
-    if (nickname?.contact !== '') setName(nickname?.contact);
-  }, [nickname?.contact]);
+    else setName(contact?.cel)
+  }, [nickname?.contact, contact]);
 
   if (contact) {
     return (
@@ -51,7 +48,7 @@ const Chat: React.FunctionComponent<Props> = ({
         />
         <div className='d-flex flex-column justify-content-center gap-0'>
           <h3 className='p-0 m-0' style={{ fontSize: 18 }}>
-            {name ? name : null}
+            {name ? name : contact?.cel}
           </h3>
           {!lastMessage ? (
             <small

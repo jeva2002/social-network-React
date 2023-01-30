@@ -16,7 +16,6 @@ export const useListenCurrentUser = (
   useEffect(() => {
     const listenCurrentUser = (doc: DocumentData | undefined, id: string) => {
       dispatch(setCurrentUser(formatCurrentUser(doc, id)));
-      console.log(currentUser);
     };
 
     if (currentUser) {

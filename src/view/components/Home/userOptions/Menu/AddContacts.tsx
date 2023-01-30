@@ -4,8 +4,7 @@ import { NewContact } from '../../../../../types';
 import { VALIDATE_ADD_CONTACT } from '../../../../../model/validations';
 import Button from 'react-bootstrap/Button';
 import { addContactHandler } from '../../../../../controller/handlers';
-import { useDispatch, useSelector } from 'react-redux';
-import { setMenuView } from '../../../../../controller/features';
+import { useSelector } from 'react-redux';
 import { getOne } from '../../../../../model/db/services';
 import { getCurrentUser } from '../../../../../controller/features/currentUser';
 
@@ -14,9 +13,12 @@ const INITIAL_VALUES: NewContact = {
   cel: '',
 };
 
-const AddContacts: React.FunctionComponent = () => {
+interface Props {
+  setView: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const AddContacts: React.FunctionComponent<Props> = ({ setView }) => {
   const currentUser = useSelector(getCurrentUser);
-  const dispatch = useDispatch();
 
   const updateCurrentUser = async () => {
     await getOne('users', currentUser?.id ?? '');
@@ -34,10 +36,7 @@ const AddContacts: React.FunctionComponent = () => {
         <TextField label='Nombre de contacto' name='contact' type='text' />
         <TextField label='Celular' name='cel' type='number' />
         <div className='mt-4 d-flex justify-content-evenly'>
-          <Button
-            variant='outline-info'
-            onClick={() => dispatch(setMenuView('chatHistory'))}
-          >
+          <Button variant='outline-info' onClick={() => setView('chatHistory')}>
             Cancelar
           </Button>
           <Button type='submit'>Crear</Button>

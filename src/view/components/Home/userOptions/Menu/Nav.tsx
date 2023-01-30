@@ -6,7 +6,6 @@ import chats from '../../../../../assets/icons/chats.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   clearCurrentUser,
-  setMenuView,
   setUserOptions,
 } from '../../../../../controller/features';
 import { useState } from 'react';

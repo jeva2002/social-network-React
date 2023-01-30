@@ -27,12 +27,14 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId, contactId }) => {
         className='col-9 position-relative'
         onSubmit={(e) => {
           e.preventDefault();
-          if (chatId) sendMessage(chatId, currentUser?.id, input);
-          else if (contactId) {
+          if (chatId) {
+            sendMessage(chatId, currentUser?.id, input);
+          } else if (contactId) {
             createNewChat(input, currentUser?.id ?? '', contactId ?? '');
           } else {
             Swal.fire('Se necesita un contacto');
           }
+          setInput('');
         }}
       >
         <FormControl
@@ -53,7 +55,12 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId, contactId }) => {
           onClick={() => {
             if (chatId) {
               sendMessage(chatId, currentUser?.id, input);
+            } else if (contactId) {
+              createNewChat(input, currentUser?.id ?? '', contactId ?? '');
+            } else {
+              Swal.fire('Se necesita un contacto');
             }
+            setInput('');
           }}
         />
       </form>

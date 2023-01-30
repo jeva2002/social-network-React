@@ -15,7 +15,7 @@ export const updateCurrentUser = async (
     if (user) {
       const updatedUser: UpdateUser = {
         cel: user.cel,
-        chats: user.chat,
+        chats: user.chats,
         contacts: user.contacts,
         description: updateData.description,
         email: user.email,

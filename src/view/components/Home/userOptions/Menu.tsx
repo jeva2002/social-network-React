@@ -13,6 +13,7 @@ import Nav from './Menu/Nav';
 
 const selectView = (
   view: string,
+  setView: React.Dispatch<React.SetStateAction<string>>,
   setFilter: React.Dispatch<React.SetStateAction<string>>,
   filter: string,
   contactsList: (ContactData | undefined)[],
@@ -20,7 +21,7 @@ const selectView = (
 ) => {
   switch (view) {
     case 'addContact':
-      return <AddContacts />;
+      return <AddContacts setView={setView} />;
     case 'contactsList':
       return (
         <>
@@ -57,7 +58,7 @@ const Menu: React.FunctionComponent = () => {
       } menu-home container-fluid col-md-4 col-12 p-0 m-0`}
     >
       <Nav setView={setView} />
-      {selectView(view, setFilter, filter, contacts, activeChats)}
+      {selectView(view, setView, setFilter, filter, contacts, activeChats)}
     </aside>
   );
 };
