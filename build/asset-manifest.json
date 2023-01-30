@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/social-network-react/static/css/main.da6d4f8f.css",
+    "main.js": "/social-network-react/static/js/main.6391e592.js",
+    "static/media/messages-list.jpg": "/social-network-react/static/media/messages-list.7e0140941162f53cf956.jpg",
+    "static/media/smile.svg": "/social-network-react/static/media/smile.d2d6119ccbba899897b095c95d1a3027.svg",
+    "static/media/paperclip.svg": "/social-network-react/static/media/paperclip.d0f1aa208bfcc51b674b576bafb3db80.svg",
+    "static/media/mic.svg": "/social-network-react/static/media/mic.f1e605a642ac5301ab41de5aea578382.svg",
+    "static/media/edit-2.svg": "/social-network-react/static/media/edit-2.e1a2ff23234912e104d55583d7cfb195.svg",
+    "static/media/camera.svg": "/social-network-react/static/media/camera.dac2a92dc57137ae06ef1420e9de0c60.svg",
+    "static/media/arrow-left.svg": "/social-network-react/static/media/arrow-left.7b2a64507382d8d628c15f03ac9c3fc6.svg",
+    "static/media/x.svg": "/social-network-react/static/media/x.5eec8032318750c42086174464465a5c.svg",
+    "index.html": "/social-network-react/index.html",
+    "static/media/search.svg": "/social-network-react/static/media/search.629de802a75166b72c870e6d1ca2ffca.svg",
+    "static/media/chats.svg": "/social-network-react/static/media/chats.44d52e07766673f37c469ee58842b302.svg",
+    "static/media/contacts-list.svg": "/social-network-react/static/media/contacts-list.0a031ecad005ef908eb8fe88d3f996ae.svg",
+    "static/media/user-plus.svg": "/social-network-react/static/media/user-plus.c77eff14a3b36234c9ea825f41eb501e.svg",
+    "static/media/check.svg": "/social-network-react/static/media/check.974a63b2cf1e9d8d3d7568f42a00847d.svg",
+    "static/media/no-photo.svg": "/social-network-react/static/media/no-photo.617bb2e431786b1d3f65cd9219ddd729.svg",
+    "static/media/send.svg": "/social-network-react/static/media/send.968c1c8c8563bd339bd0ab0206b89c98.svg",
+    "static/media/arrow-down.svg": "/social-network-react/static/media/arrow-down.14214ad31414c6d01c4f49b00540ec02.svg",
+    "main.da6d4f8f.css.map": "/social-network-react/static/css/main.da6d4f8f.css.map",
+    "main.6391e592.js.map": "/social-network-react/static/js/main.6391e592.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.da6d4f8f.css",
+    "static/js/main.6391e592.js"
+  ]
+}
