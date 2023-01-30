@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getIsActive } from '../../../../controller/features';
-import { getActiveChats, getCurrentChat } from '../../../../controller/features/chats';
-import { ContactData } from '../../../../types';
+import { getCurrentChat } from '../../../../controller/features/chats';
 import ChatMenu from './CurrentChat/ChatMenu';
 import CurrentContact from './CurrentChat/CurrentContact';
 import MessagesList from './CurrentChat/MessagesList';
 
 const CurrentChat: React.FunctionComponent = () => {
-  const activeChats = useSelector(getActiveChats);
   const currentChatSelected = useSelector(getCurrentChat);
   const isActive = useSelector(getIsActive);
 
@@ -20,7 +17,7 @@ const CurrentChat: React.FunctionComponent = () => {
     >
       <CurrentContact currentChat={currentChatSelected} />
       <MessagesList currentChat={currentChatSelected} />
-      <ChatMenu chatId={currentChatSelected?.chat?.id} />
+      <ChatMenu chatId={currentChatSelected?.chat?.id} contactId={currentChatSelected?.id} />
     </section>
   );
 };

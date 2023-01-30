@@ -16,7 +16,7 @@ export const useSetContacts = (currentUser: CurrentUserData | undefined) => {
         dispatch(setContacts(res));
       });
     }
-  }, []);
+  }, [currentUser]);
 };
 
 export const useSetActiveChats = (currentUser: CurrentUserData | undefined) => {
@@ -34,5 +34,5 @@ export const useSetActiveChats = (currentUser: CurrentUserData | undefined) => {
     return () => {
       dispatch(setCurrentChat(undefined));
     };
-  }, []);
+  }, [currentUser]);
 };

@@ -58,7 +58,7 @@ const Chat: React.FunctionComponent<Props> = ({
               className='p-0 m-0'
               style={{ height: 18, overflow: 'hidden' }}
             >
-              {contact?.chat.messages.at(-1)?.message}
+              {contact?.chat.messages?.at(-1)?.message}
             </small>
           ) : null}
         </div>

@@ -4,17 +4,17 @@ import clip from '../../../../../assets/icons/paperclip.svg';
 import mic from '../../../../../assets/icons/mic.svg';
 import send from '../../../../../assets/icons/send.svg';
 import FormControl from 'react-bootstrap/FormControl';
-import { sendMessage } from '../../../../../controller/handlers';
+import { createNewChat, sendMessage } from '../../../../../controller/handlers';
 import { useSelector } from 'react-redux';
+import { getCurrentUser } from '../../../../../controller/features/currentUser';
 
 interface Props {
   chatId: string | undefined;
+  contactId: string | undefined;
 }
 
-const ChatMenu: React.FunctionComponent<Props> = ({ chatId }) => {
-  const currentUser = useSelector(
-    (state: any) => state.currentUser.currentUser
-  );
+const ChatMenu: React.FunctionComponent<Props> = ({ chatId, contactId }) => {
+  const currentUser = useSelector(getCurrentUser);
 
   const [input, setInput] = useState('');
 
@@ -26,7 +26,10 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId }) => {
         className='col-9 position-relative'
         onSubmit={(e) => {
           e.preventDefault();
-          if (chatId) sendMessage(chatId, currentUser.id, input);
+          if (chatId) sendMessage(chatId, currentUser?.id, input);
+          else {
+            createNewChat(input, currentUser?.id ?? '', contactId ?? '');
+          }
         }}
       >
         <FormControl
@@ -45,7 +48,9 @@ const ChatMenu: React.FunctionComponent<Props> = ({ chatId }) => {
           src={send}
           alt='Enviar'
           onClick={() => {
-            if (chatId) sendMessage(chatId, currentUser.id, input);
+            if (chatId) {
+              sendMessage(chatId, currentUser?.id, input);
+            }
           }}
         />
       </form>

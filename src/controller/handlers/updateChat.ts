@@ -7,7 +7,7 @@ import { DateTime } from 'luxon';
 
 export const sendMessage = async (
   chatId: string,
-  currentUserId: string,
+  currentUserId: string | undefined,
   message: string
 ) => {
   try {
@@ -17,7 +17,7 @@ export const sendMessage = async (
       hour: new Date()
         .toLocaleDateString('en-US', DateTime.TIME_WITH_SECONDS)
         .split(',')[1],
-      sendBy: currentUserId,
+      sendBy: currentUserId ? currentUserId : '',
       viewed: false,
     };
     const chat = await getOne(collections.chats, chatId);
@@ -40,9 +40,11 @@ export const deleteMessage = async (
   try {
     if (contact) {
       const chat = await getOne(collections.chats, contact.chat.id);
-      if(chat) {
-        chat.messages = contact.chat?.messages.filter((item) => message !== item);
-        await update(contact.chat.id, collections.chats, chat)
+      if (chat) {
+        chat.messages = contact.chat?.messages.filter(
+          (item) => message !== item
+        );
+        await update(contact.chat.id, collections.chats, chat);
       }
     }
   } catch (error: Error | FirebaseError | unknown) {

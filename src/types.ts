@@ -8,6 +8,11 @@ export interface NewContact {
   cel: number | string;
 }
 
+export interface NewChat {
+  messages: Message[];
+  participants: string[];
+}
+
 export interface Contact {
   contact: string;
   cel: number;

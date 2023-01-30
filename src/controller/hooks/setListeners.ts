@@ -4,14 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { collections } from '../../model/db/config';
 import { listenDoc } from '../../model/db/services';
 import { formatCurrentUser } from '../../model/validations';
-import { Chat, ContactData, CurrentUserData } from '../../types';
+import { ContactData, CurrentUserData } from '../../types';
 import { setCurrentUser, getActiveChats } from '../features';
-import {
-  getCurrentChat,
-  setCurrentChat,
-  updateChat,
-  updateCurrentChat,
-} from '../features/chats';
+import { updateChat, updateCurrentChat } from '../features/chats';
 
 export const useListenCurrentUser = (
   currentUser: CurrentUserData | undefined
@@ -21,6 +16,7 @@ export const useListenCurrentUser = (
   useEffect(() => {
     const listenCurrentUser = (doc: DocumentData | undefined, id: string) => {
       dispatch(setCurrentUser(formatCurrentUser(doc, id)));
+      console.log(currentUser);
     };
 
     if (currentUser) {
