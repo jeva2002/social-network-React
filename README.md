@@ -1,4 +1,4 @@
-# social-network-react (in progress)
+# social-network-react 
 
 This is a "clone" of Whatsapp where we can create users with an authentication, then we can login with that account, if other users exist we can add by their cel and then we can chat with them. Also, we can modify some of the basic data of our current user, filter our contacts or our active chats.
 
